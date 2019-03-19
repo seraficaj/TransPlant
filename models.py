@@ -33,5 +33,5 @@ class Plant(Model):
 
 def initialize():
   DATABASE.connect()
-  DATABASE.create_tables(Review, safe=True)
+  DATABASE.create_tables([Review, Plant], safe=True)
   DATABASE.close()
