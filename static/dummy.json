@@ -1,0 +1,22 @@
+[{
+    "name": "Sunflower",
+    "water": "A lil water",
+    "difficulty": "Kinda difficult",
+    "image": "static/lizard.jpg",
+    "id": 1
+},
+{
+    "name": "Cactus",
+    "water": "No water",
+    "difficulty": "Not difficult",
+    "image": "static/FLOWER.jpeg",
+    "id": 2
+},
+{
+    "name": "Tulip",
+    "water": "A lotta water",
+    "difficulty": "Very difficult",
+    "image": "static/hedgehog.jpg",
+    "id": 3
+}
+]

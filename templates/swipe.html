@@ -1,0 +1,36 @@
+
+{% extends "layout.html" %}
+
+{% block content %}
+<h1>Swipe Page</h1>
+    <div >
+        <div>
+            <span class = "species">Species</span>
+        </div>
+
+        <div>
+            <span class = "difficulty">Difficulty</span>
+        </div>  
+
+        <div>
+        <span class = "water">Water</span>
+        </div>
+
+        <div>
+            <img class= "plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
+        </div>
+
+    </div>
+    <button class = "yesButton">YEUUUHHH</button>
+    <button class = "noButton">NOIIII</button>
+
+
+    <div>
+        <h1>Your Bebez</h1>
+        <ul class= yasPlants>
+        </ul>
+
+    </div>
+
+
+{% endblock %}
