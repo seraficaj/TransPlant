@@ -1,11 +1,41 @@
+
+#import datetime for review posts
 import datetime
-from peewee import *
+
 
 from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash
 
+#import peewee ORM
+from peewee import * 
 
-DATABASE = SqliteDatabase('twit.db')
+#set Database 
+DATABASE = SqliteDatabase('PlantSwipe.db')
+
+#review Model
+class Review(Model):
+  plant = TextField() 
+  user = TextField()
+  rating = IntegerField()
+  text = TextField()
+  timestamp = DateTimeField(default=datetime.datetime.now)
+
+  class Meta:
+    database = DATABASE
+    order_by = ('-timestamp',)
+
+#plant Model
+class Plant(Model):
+  image = CharField()
+  species = CharField()
+  watering = IntegerField()
+  light = IntegerField()
+  Difficulty =  IntegerField()
+
+  class Meta:
+    database = DATABASE
+
+
 
 class User(UserMixin, Model):
     username = CharField(unique=True)
@@ -29,5 +59,6 @@ class User(UserMixin, Model):
             
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User], safe=True)
+    DATABASE.create_tables([User, Review, Plant], safe=True)
     DATABASE.close()
+

@@ -1,5 +1,15 @@
 from flask_wtf import FlaskForm as Form
 
+from wtforms import TextField, IntegerField, TextAreaField, SubmitField
+from models import Review
+
+class ReviewForm(Form):
+  plant = TextField("Species Name") 
+  user = TextField("Posted By:")
+  rating = IntegerField("Rating in stars")
+  text = TextAreaField("Insert Review Text body here")
+  submit = SubmitField("create new Review")
+
 from models import User
 
 from wtforms import StringField, PasswordField, TextAreaField, SubmitField
@@ -54,3 +64,4 @@ class SignUpForm(Form):
 class LoginForm(Form):
     email = StringField('Email', validators= [DataRequired(),Email()])
     password = PasswordField ('Password', validators= [DataRequired()])
+
