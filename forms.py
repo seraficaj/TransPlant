@@ -5,6 +5,6 @@ from models import Review
 class ReviewForm(Form):
   plant = TextField("Species Name") 
   user = TextField("Posted By:")
-  rating = IntegerField("Rating in start")
+  rating = IntegerField("Rating in stars")
   text = TextAreaField("Insert Review Text body here")
   submit = SubmitField("create new Review")

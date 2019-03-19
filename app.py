@@ -5,6 +5,7 @@ from flask_cors import CORS
 from forms import ReviewForm
 
 import models
+from models import Review
 
 app = Flask(__name__)
 CORS(app)
@@ -21,6 +22,7 @@ def before_request():
   g.db = models.DATABASE
   g.db.connect()
 
+
 @app.after_request
 def after_request(response):
   """Close the database connection after each request."""
@@ -33,19 +35,30 @@ def make_review():
 
     if form.validate_on_submit():
       # if it is, we create a new review
-      models.Review.create(
-          plant=form.plant.data.strip(), 
-          user=form.user.data.strip(),
-          rating=form.rating,
-          text=form.text.data.strip()
+      print(
+        form.plant.data,
+        form.user.data,
+        form.rating.data,
+        form.text.data
       )
-
-      flash("New Form registered. Called: {}".format(form.name.data))
+      new_review = models.Review.create(
+        plant=form.plant.data.strip(),
+        user=form.user.data.strip(),
+        rating=form.rating.data,
+        text=form.text.data.strip()
+      )
+      print(new_review)
       # and redirect to the main reviews index
       return redirect('/reviews')
       
     # if the submission isn't valid, send the user back to the original view
     return render_template("review_form.html", title="New Review", form=form)
 
+@app.route('/reviews')
+def show_reviews():
+  reviews = models.Review.select().limit(100)
+  return render_template("reviews.html", reviews=reviews)
+
 if __name__ == '__main__':
-    app.run(debug=DEBUG, port=PORT)
+  models.initialize()
+  app.run(debug=DEBUG, port=PORT)

@@ -5,7 +5,7 @@ import datetime
 from peewee import * 
 
 #set Database 
-DATABASE = SqliteDatabase("PlantSwipe.db")
+DATABASE = SqliteDatabase('PlantSwipe.db')
 
 #review Model
 class Review(Model):
@@ -24,7 +24,7 @@ class Plant(Model):
   image: CharField()
   species: CharField()
   watering: IntegerField()
-  Light: IntegerField()
+  light: IntegerField()
   Difficulty: IntegerField()
 
   class Meta:
