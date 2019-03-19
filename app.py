@@ -1,8 +1,6 @@
 import os
 
 from flask import Flask, request, g, render_template, flash, redirect,url_for
-from flask_sqlalchemy import SQLAlchemy
-from flask_marshmallow import Marshmallow
 from flask_cors import CORS
 from forms import ReviewForm
 
@@ -29,9 +27,24 @@ def after_request(response):
   g.db.close()
   return response
 
-@app.route('/')
-def hello_world():
+@app.route('/', methods=['GET', 'POST'])
+def make_review():
     form = ReviewForm()
+
+    if form.validate_on_submit():
+      # if it is, we create a new review
+      models.Review.create(
+          plant=form.plant.data.strip(), 
+          user=form.user.data.strip(),
+          rating=form.rating,
+          text=form.text.data.strip()
+      )
+
+      flash("New Form registered. Called: {}".format(form.name.data))
+      # and redirect to the main reviews index
+      return redirect('/reviews')
+      
+    # if the submission isn't valid, send the user back to the original view
     return render_template("review_form.html", title="New Review", form=form)
 
 if __name__ == '__main__':
