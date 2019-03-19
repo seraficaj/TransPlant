@@ -29,7 +29,7 @@ def after_request(response):
   g.db.close()
   return response
 
-@app.route('/', methods=['GET', 'POST'])
+@app.route('/review', methods=['GET', 'POST'])
 def make_review():
     form = ReviewForm()
 
@@ -41,13 +41,13 @@ def make_review():
         form.rating.data,
         form.text.data
       )
-      new_review = models.Review.create(
+      models.Review.create(
         plant=form.plant.data.strip(),
         user=form.user.data.strip(),
         rating=form.rating.data,
         text=form.text.data.strip()
       )
-      print(new_review)
+      flash("NEW REVIEW {}".format(form.plant.data))
       # and redirect to the main reviews index
       return redirect('/reviews')
       

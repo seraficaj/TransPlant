@@ -9,11 +9,11 @@ DATABASE = SqliteDatabase('PlantSwipe.db')
 
 #review Model
 class Review(Model):
-  plant: TextField() 
-  user: TextField()
-  rating: IntegerField()
-  text: TextField()
-  timestamp: DateTimeField(default=datetime.datetime.now)
+  plant = TextField() 
+  user = TextField()
+  rating = IntegerField()
+  text = TextField()
+  timestamp = DateTimeField(default=datetime.datetime.now)
 
   class Meta:
     database = DATABASE
@@ -21,11 +21,11 @@ class Review(Model):
 
 #plant Model
 class Plant(Model):
-  image: CharField()
-  species: CharField()
-  watering: IntegerField()
-  light: IntegerField()
-  Difficulty: IntegerField()
+  image = CharField()
+  species = CharField()
+  watering = IntegerField()
+  light = IntegerField()
+  Difficulty =  IntegerField()
 
   class Meta:
     database = DATABASE
