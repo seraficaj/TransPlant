@@ -1,0 +1,30 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <form method="POST" action="" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div>
+      {{ form.plant.label }}
+      {{ form.plant() }}
+    </div>
+    <div>
+      {{ form.user.label }}
+      {{ form.user() }}
+    </div>
+    <div>
+      {{ form.user.label }}
+      {{ form.user() }}
+    </div>
+    <div>
+      {{ form.rating.label }}
+      {{ form.rating() }}
+    </div>
+    <div>
+      {{ form.text.label }}
+      {{ form.text() }}
+    </div>
+
+    {{ form.submit() }}
+  </form>
+{% endblock %}
