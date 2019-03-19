@@ -17,7 +17,8 @@ app.secret_key = 'adkjfalj.adflja.dfnasdf.asd'
 
 @app.route('/')
 def swipePage(swipe=None):
-    return render_template('swipe.html',swipe=swipe)
+    form = ReviewForm()
+    return render_template('swipe.html',swipe=swipe, form=form)
 
 
 
