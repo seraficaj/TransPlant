@@ -1,0 +1,17 @@
+{% extends "layout.html" %}
+
+{% block content %}
+  <h1>Submit A Review</h1>
+      <div>
+      <form method="POST" action="" novalidate>
+        {{ form.hidden_tag() }}
+
+        <div class="field">
+          {{ form.review.label }}
+          {{ form.review(class_="textarea") }}
+        </div>
+
+        {{ form.submit(class_="button") }}
+      </form>
+    </div>
+{% endblock %}
