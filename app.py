@@ -32,6 +32,15 @@ def after_request(response):
     return response
 
 @app.route('/')
+def landingPage():
+    return render_template('landing.html')
+
+@app.route('/profile')
+def profilePage():
+    return render_template('profile.html')
+
+
+@app.route('/swipe')
 def swipePage(swipe=None):
     form = ReviewForm()
     return render_template('swipe.html',swipe=swipe, form=form)
