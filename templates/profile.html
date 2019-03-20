@@ -1,6 +1,23 @@
 
-{% extends "layout.html" %}
+
+{% extends "stream.html" %}
 
 {% block content %}
-<h1>{% if current_user.is_authenticated %} Hello {{current_user.username}} {%endif%}</h1>
+
+
+      
+<div>
+    <div>
+        <h1>Hello {{ user.username }}</h1>
+    </div>
+    <div>
+        <div>
+            <h5>Plants</h5>
+            <p>{{ user.plants.count() }}</p>
+        </div>
+    </div>
+</div>
+
+
+{{ super() }}
 {% endblock %}

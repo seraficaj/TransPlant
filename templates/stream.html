@@ -1,0 +1,13 @@
+{% extends "layout.html" %}
+
+{% block content %}
+
+{% for plant in stream %}
+      <div class="card" style="width: 18rem;">
+         <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=plant.user.username) }}">{{ plant.user.username }}</a></h5>
+        <div class="card-body">
+          <p class="card-text">{{ plant.content }}</p>
+        </div>
+      </div>
+{% endfor %}
+{% endblock %}

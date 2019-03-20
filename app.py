@@ -5,17 +5,15 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from flask_bcrypt import check_password_hash
 
 from flask_cors import CORS
-from forms import ReviewForm
 
 import models
-from models import Review
+from models import Review, userPlants
 
-from forms import ReviewForm, SignUpForm, LoginForm
+from forms import ReviewForm, SignUpForm, LoginForm, PlantForm
 import models
 
 app = Flask(__name__)
 CORS(app)
-app.config['SECRET_KEY'] = 'any string works here'
 
 DEBUG = True
 PORT = 8000
@@ -31,11 +29,13 @@ login_manager.login_view = 'login'
 def before_request():
     g.db= models.DATABASE
     g.db.connect()
+    g.user = current_user 
 
 @app.after_request
 def after_request(response):
     g.db.close()
     return response
+
 
 @app.route('/review', methods=['GET', 'POST'])
 def make_review():
@@ -72,15 +72,28 @@ def show_reviews():
 def landingPage():
     return render_template('landing.html')
 
-@app.route('/profile')
-def profilePage():
-    return render_template('profile.html')
 
 
-@app.route('/swipe')
+@app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
-    form = ReviewForm()
+    form = PlantForm()
+    if form.validate_on_submit():
+        models.userPlants.create(user=g.user._get_current_object(),
+                                content=form.content.data.strip())
     return render_template('swipe.html',swipe=swipe, form=form)
+
+@app.route('/stream')
+def stream(username=None):
+    template = 'stream.html'
+    if username and username != current_user.username:
+        user = models.User.select().where(models.User.username == username).get()
+        stream = user.plants.limit(100)
+    else:
+        stream = current_user.get_stream().limit(100)
+        user = current_user
+    if username:
+        template = 'profile.html'
+    return render_template(template, stream=stream, user=user)
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signupPage():
