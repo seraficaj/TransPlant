@@ -13,7 +13,7 @@ from models import Review
 from forms import ReviewForm, SignUpForm, LoginForm
 import models
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 CORS(app)
 app.config['SECRET_KEY'] = 'any string works here'
 
