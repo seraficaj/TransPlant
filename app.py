@@ -45,13 +45,11 @@ def make_review():
       # if it is, we create a new review
       print(
         form.plant.data,
-        form.user.data,
         form.rating.data,
         form.text.data
       )
       models.Review.create(
         plant=form.plant.data.strip(),
-        user=form.user.data.strip(),
         rating=form.rating.data,
         text=form.text.data.strip()
       )
@@ -82,18 +80,24 @@ def swipePage(swipe=None):
                                 content=form.content.data.strip())
     return render_template('swipe.html',swipe=swipe, form=form)
 
-@app.route('/stream')
+@app.route('/stream', methods=['GET','POST'])
 def stream(username=None):
+    form = ReviewForm()
+    if form.validate_on_submit():
+        models.Review.create(user=g.user._get_current_object(),
+                                plant=form.plant.data,
+                                rating= form.rating.data,
+                                text=form.text.data)
     template = 'stream.html'
     if username and username != current_user.username:
         user = models.User.select().where(models.User.username == username).get()
-        stream = user.plants.limit(100)
+        stream = user.reviews.limit(100)
     else:
         stream = current_user.get_stream().limit(100)
         user = current_user
     if username:
         template = 'profile.html'
-    return render_template(template, stream=stream, user=user)
+    return render_template(template, stream=stream, form=form, username=username)
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signupPage():

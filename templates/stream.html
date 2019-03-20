@@ -2,11 +2,32 @@
 
 {% block content %}
 
-{% for plant in stream %}
+
+<form method="POST" action="" novalidate>
+    {{ form.hidden_tag() }}
+
+    <div>
+      {{ form.plant.label }}
+      {{ form.plant() }}
+    </div>
+    <div>
+      {{ form.rating.label }}
+      {{ form.rating() }}
+    </div>
+    <div>
+      {{ form.text.label }}
+      {{ form.text() }}
+    </div>
+
+    {{ form.submit() }}
+  </form>
+
+
+{% for reviews in stream %}
       <div class="card" style="width: 18rem;">
-         <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=plant.user.username) }}">{{ plant.user.username }}</a></h5>
+         <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=reviews.user.username) }}"></a></h5>
         <div class="card-body">
-          <p class="card-text">{{ plant.content }}</p>
+          <p class="card-text">{{ reviews.plant }}</p>
         </div>
       </div>
 {% endfor %}

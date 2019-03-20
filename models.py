@@ -23,12 +23,14 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE  
         
-    def get_plants(self):
-        return userPlants.select().where(userPlants.user == self)
+    # def get_plants(self):
+    #     return userPlants.select().where(userPlants.user == self)
+    
+    def get_reviews(self):
+        return Review.select().where(Review.user==self)
         
     def get_stream(self):
-        return userPlants.select().where(userPlants.user == self)
- 
+        return Review.select().where(Review.user==self)
 
     @classmethod
     def create_user(cls, username, email, password, admin=False):
@@ -43,6 +45,10 @@ class User(UserMixin, Model):
 
 #review Model
 class Review(Model):
+  user = ForeignKeyField(
+      model = User,
+      backref= 'stream'
+  )
   plant = TextField() 
   rating = IntegerField()
   text = TextField()
@@ -51,7 +57,6 @@ class Review(Model):
   class Meta:
     database = DATABASE
     order_by = ('-timestamp',)
-
 
 #plant Model
 class Plant(Model):
@@ -74,11 +79,6 @@ class userPlants(Model):
     database = DATABASE
     
 
-   
-
-
-
-            
 def initialize():
     DATABASE.connect()
     DATABASE.create_tables([User, Review, Plant, userPlants], safe=True)
