@@ -12,24 +12,29 @@ $(document).ready(function () {
         //initial plant showing
         setHtml(0)
 
-        var i = 0;
+        let i = 0;
 
 
-        $(".yesButton").click(function () {
-            i = (i + 1) % json.length;
+        $(".yesButton").click(function (e) {
             setHtml(i)
+            if (e.target === undefined) return;
+
+            i = (i + 1)
+            //  % json.length;
             if (i == 0) {
-                $('.yasPlants').append('<li>' + json[json.length - 1].species + '</li>')
+                $('.yasPlants').append('<li>' + json[i].species + '</li>')
             } else {
                 $('.yasPlants').append('<li>' + json[i - 1].species + '</li>')
             }
 
         }); //end of yes click function 
 
+        // ! Don't add if the species allready exists
+
         $(".noButton").click(function () {
             i = (i + 1) % json.length;
             setHtml(i)
         }); //end of no click function
-    }); //end of getJson functuion
+    }); //end of getJson function
 
 }); //end of document.ready

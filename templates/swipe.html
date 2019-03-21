@@ -1,50 +1,49 @@
-
 {% extends "layout.html" %}
 {% from 'macros.html' import render_field %}
 
 {% block content %}
 <h1>Swipe Page</h1>
-    <div >
-         <div>
-             <img class= "plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
-        </div>
-        
-        <div>
-            <span class = "species">Species</span>
-        </div>
-
-        <div>
-            <span class = "difficulty">Difficulty</span>
-        </div>  
-
-        <div>
-        <span class = "water">Water</span>
-        </div>
-
-        <div>
-            <span class = "light">Light</span>
-        </div>
-
-
+<div class="card" >
+    <div>
+        <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
     </div>
-    <button class = "yesButton">YEUUUHHH</button>
-    <button class = "noButton">NOIIII</button>
-
 
     <div>
-        <h1>Your Bebez</h1>
-        <ul class= yasPlants>
-        </ul>
-
+        <span class="species">Species</span>
     </div>
 
-    <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            {% for field in form %}
-                {{ render_field(field) }}
-            {% endfor %}
-            <button class="submitButton" type="submit" >Post</button>
-    </form>
+    <div>
+        <span class="difficulty">Difficulty</span>
+    </div>
+
+    <div>
+        <span class="water">Water</span>
+    </div>
+
+    <div>
+        <span class="light">Light</span>
+    </div>
+
+
+</div>
+<button class="yesButton">YEUUUHHH</button>
+<button class="noButton">NOIIII</button>
+
+
+<div>
+    <h1>Your Bebez</h1>
+    <ul class=yasPlants>
+    </ul>
+
+</div>
+
+<form method="POST" action="">
+    {{ form.hidden_tag() }}
+    {% for field in form %}
+    {{ render_field(field) }}
+    {% endfor %}
+    <button class="submitButton" type="submit">Post</button>
+</form>
 
 
 {% endblock %}
