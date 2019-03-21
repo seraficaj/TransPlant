@@ -18,7 +18,12 @@ $( document ).ready(function() {
                 console.log(i);
             }
         })
-        $('noButton').click( () => {
+        $('.noButton').click( () => {
+            if (i < json.length - 1) {
+                i++;
+                setHtml(i);
+                console.log(i);
+            }
         })
 
 
