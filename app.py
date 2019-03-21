@@ -10,7 +10,8 @@ import models
 from models import Review, userPlants
 
 from forms import ReviewForm, SignUpForm, LoginForm, PlantForm
-import models
+
+
 
 app = Flask(__name__)
 CORS(app)
@@ -75,6 +76,7 @@ def landingPage():
 @app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
     form = PlantForm()
+
     if form.validate_on_submit():
         models.userPlants.create(user=g.user._get_current_object(),
                                 content=form.content.data.strip())
@@ -82,12 +84,16 @@ def swipePage(swipe=None):
 
 @app.route('/stream', methods=['GET','POST'])
 def stream(username=None):
+    # plant = Review.get(Review.id == 2)
+    # plant.delete_instance()
+    
     form = ReviewForm()
     if form.validate_on_submit():
         models.Review.create(user=g.user._get_current_object(),
                                 plant=form.plant.data,
                                 rating= form.rating.data,
                                 text=form.text.data)
+    
     template = 'stream.html'
     if username and username != current_user.username:
         user = models.User.select().where(models.User.username == username).get()
@@ -98,6 +104,18 @@ def stream(username=None):
     if username:
         template = 'profile.html'
     return render_template(template, stream=stream, form=form, username=username)
+
+@app.route('/delete', methods=['GET'])
+def delete():
+    reviews = models.Review.select()
+    idNumber= request.args.get('idNumber')
+    if idNumber == Review.id:
+        plant = Review.get(Review.id == idNumber)
+        plant.delete_instance()
+
+    
+    
+    return redirect(url_for('stream'))
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signupPage():
@@ -145,6 +163,8 @@ def logout():
     logout_user()
     flash("Logged Out")
     return redirect(url_for('swipePage'))
+
+
 
 
 

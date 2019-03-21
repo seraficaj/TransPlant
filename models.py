@@ -23,9 +23,6 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE  
         
-    # def get_plants(self):
-    #     return userPlants.select().where(userPlants.user == self)
-    
     def get_reviews(self):
         return Review.select().where(Review.user==self)
         
@@ -57,6 +54,10 @@ class Review(Model):
   class Meta:
     database = DATABASE
     order_by = ('-timestamp',)
+
+    def delete_review(id):
+        plant = Review.get(Review.id == id)
+        plant.delete_instance()
 
 #plant Model
 class Plant(Model):

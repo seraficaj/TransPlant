@@ -28,6 +28,8 @@
          <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=reviews.user.username) }}"></a></h5>
         <div class="card-body">
           <p class="card-text">{{ reviews.plant }}</p>
+          <a  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
+    
         </div>
       </div>
 {% endfor %}
