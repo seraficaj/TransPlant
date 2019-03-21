@@ -29,7 +29,6 @@ $(document).ready(function () {
 
         }); //end of yes click function 
 
-        // ! Don't add if the species allready exists
 
         $(".noButton").click(function () {
             i = (i + 1) % json.length;

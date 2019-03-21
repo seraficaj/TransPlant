@@ -2,8 +2,8 @@
 {% from 'macros.html' import render_field %}
 
 {% block content %}
-<h1>Swipe Page</h1>
-<div class="card" >
+<h1 class="text-center">Swipe Page</h1>
+<div class="card">
     <div>
         <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
     </div>
@@ -24,25 +24,22 @@
         <span class="light">Light</span>
     </div>
 
-
 </div>
-<button class="yesButton">YEUUUHHH</button>
-<button class="noButton">NOIIII</button>
 
 
 <div>
     <h1>Your Bebez</h1>
-    <ul class=yasPlants>
+    <ul class="yasPlants">
     </ul>
 
 </div>
 
-<form method="POST" action="">
+<form method="POST" action="" class="group-form">
     {{ form.hidden_tag() }}
     {% for field in form %}
     {{ render_field(field) }}
     {% endfor %}
-    <button class="submitButton" type="submit">Post</button>
+    <button class="submitButton btn-btn-primary" type="submit">Post</button>
 </form>
 
 
