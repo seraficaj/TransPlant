@@ -71,8 +71,6 @@ def show_reviews():
 def landingPage():
     return render_template('landing.html')
 
-
-
 @app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
     form = PlantForm()
@@ -113,8 +111,6 @@ def delete():
         plant = Review.get(Review.id == idNumber)
         plant.delete_instance()
 
-    
-    
     return redirect(url_for('stream'))
 
 @app.route('/signup', methods=('GET', 'POST'))
