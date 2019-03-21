@@ -5,8 +5,8 @@
 </style>
 
 {% block content %}
-<div class="backgroundImage">
-    <div class="form-group">
+<div class="backgroundImage d-flex">
+    <div class="form-group d-flex flex-column justify-content-center">
         <form method="POST" action="" class="form">
             {{ form.hidden_tag() }}
             {% for field in form %}

@@ -1,8 +1,3 @@
-/* body {
-    background-image: url('https://images.unsplash.com/photo-1552907241-694fb71840d7?ixlib=rb-1.2.1&ixid=eyJhcHBfaWQiOjEyMDd9&auto=format&fit=crop&w=1010&q=80');
-    background-color: red;
-} */
-
 /* ! Background image for signin  */
 .backgroundImage {
     background-image: url("/static/login.jpeg");
@@ -24,6 +19,10 @@
     background-size: cover;
 }
 
+.backgroundImage {
+    justify-content: center;
+}
+
 #video-background {
     right: 0;
     bottom: 0;
@@ -34,13 +33,17 @@
     z-index: 2;
 }
 
-/* !! Sign up form */
-#signup {
-    margin: 0 auto;
-    width: 400px;
-    background-color: blue;
+.signup {
+    margin-left: 24%;
 }
 
-.signup {
-    margin-left: 32%;
+.field input,
+#submit {
+    height: 3em;
+    width: 27em;
+    font-size: 18px;
+}
+
+.form {
+    margin-left: 16%;
 }
