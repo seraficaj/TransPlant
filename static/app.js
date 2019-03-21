@@ -1,36 +1,35 @@
-$( document ).ready(function() {
-    $.getJSON("static/dummy.json", function(json) {
-          
-        var i = 0;    
-        //initial plant showing
-        $(".species").html(json[i].name)
-        $(".difficulty").html(json[i].difficulty)
-        $(".water").html(json[i].water)
-        $('.plantImage').attr('src', json[i].image)
-        
+$(document).ready(function () {
+    $.getJSON(("static/plant.json"), function (json) {
 
-        $(".yesButton").click(function(){
-            i= (i+1)%json.length;
-            $( ".species" ).html(json[i].name) ;
-            $(".difficulty").html(json[i].difficulty)
-            $(".water").html(json[i].water)
-            $('.plantImage').attr('src', json[i].image)    
-            if (i==0){
-                $('.yasPlants').append('<li>' + json[json.length-1].name+ '</li>')
-            }else{
-                $('.yasPlants').append('<li>' + json[i-1].name+ '</li>')
+        function setHtml(z) {
+            $(".species").html('Species: ' + json[z].species)
+            $(".difficulty").html('Level of Difficulty: ' + json[z].Difficulty)
+            $(".water").html('Level of Watering: ' + json[z].watering)
+            $('.plantImage').attr('src', json[z].image)
+            $('.light').html('Amount of Light: ' + json[z].light)
+        }
+
+        //initial plant showing
+        setHtml(0)
+
+        var i = 0;
+
+
+        $(".yesButton").click(function () {
+            i = (i + 1) % json.length;
+            setHtml(i)
+            if (i == 0) {
+                $('.yasPlants').append('<li>' + json[json.length - 1].species + '</li>')
+            } else {
+                $('.yasPlants').append('<li>' + json[i - 1].species + '</li>')
             }
-            console.log(i, "!!!!")
 
         }); //end of yes click function 
-        
-        $(".noButton").click(function(){
-            i= (i+1)%json.length;
-            $( ".species" ).html(json[i].name) ;
-            $(".difficulty").html(json[i].difficulty)
-            $(".water").html(json[i].water)
-            $('.plantImage').attr('src', json[i].image)    
-        }); //end of no click function
-    });//end of getJson functuion
 
-}); //end of document.ready  
+        $(".noButton").click(function () {
+            i = (i + 1) % json.length;
+            setHtml(i)
+        }); //end of no click function
+    }); //end of getJson functuion
+
+}); //end of document.ready

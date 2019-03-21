@@ -2,6 +2,7 @@
 #import datetime for review posts
 import datetime
 
+import json
 
 from flask_login import UserMixin
 from flask_bcrypt import generate_password_hash
@@ -12,10 +13,40 @@ from peewee import *
 #set Database 
 DATABASE = SqliteDatabase('PlantSwipe.db')
 
+class User(UserMixin, Model):
+    username = CharField(unique=True)
+    email = CharField(unique=True)
+    password = CharField(max_length=50)
+    joined_at = DateTimeField(default=datetime.datetime.now)
+    is_admin = BooleanField(default=False)
+
+    class Meta:
+        database = DATABASE  
+        
+    def get_reviews(self):
+        return Review.select().where(Review.user==self)
+        
+    def get_stream(self):
+        return Review.select().where(Review.user==self)
+
+    @classmethod
+    def create_user(cls, username, email, password, admin=False):
+        try:
+            cls.create(
+                username=username,
+                email=email,
+                password=generate_password_hash(password),
+                is_admin=admin)
+        except IntegrityError:
+            raise ValueError("User already exists")
+
 #review Model
 class Review(Model):
+  user = ForeignKeyField(
+      model = User,
+      backref= 'stream'
+  )
   plant = TextField() 
-  user = TextField()
   rating = IntegerField()
   text = TextField()
   timestamp = DateTimeField(default=datetime.datetime.now)
@@ -23,6 +54,10 @@ class Review(Model):
   class Meta:
     database = DATABASE
     order_by = ('-timestamp',)
+
+    def delete_review(id):
+        plant = Review.get(Review.id == id)
+        plant.delete_instance()
 
 #plant Model
 class Plant(Model):
@@ -35,30 +70,18 @@ class Plant(Model):
   class Meta:
     database = DATABASE
 
+class userPlants(Model):
+  user = ForeignKeyField(
+      model = User,
+      backref= 'swipe'
+  )
+  content = TextField()
+  class Meta:
+    database = DATABASE
+    
 
-
-class User(UserMixin, Model):
-    username = CharField(unique=True)
-    email = CharField(unique=True)
-    password = CharField(max_length=50)
-    joined_at = DateTimeField(default=datetime.datetime.now)
-    is_admin = BooleanField(default=False)
-
-    class Meta:
-        database = DATABASE  
-    @classmethod
-    def create_user(cls, username, email, password, admin=False):
-        try:
-            cls.create(
-                username=username,
-                email=email,
-                password=generate_password_hash(password),
-                is_admin=admin)
-        except IntegrityError:
-            raise ValueError("User already exists")
-            
 def initialize():
     DATABASE.connect()
-    DATABASE.create_tables([User, Review, Plant], safe=True)
+    DATABASE.create_tables([User, Review, Plant, userPlants], safe=True)
     DATABASE.close()
 

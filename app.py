@@ -5,17 +5,16 @@ from flask_login import LoginManager, login_user, logout_user, login_required, c
 from flask_bcrypt import check_password_hash
 
 from flask_cors import CORS
-from forms import ReviewForm
 
 import models
-from models import Review
+from models import Review, userPlants
 
-from forms import ReviewForm, SignUpForm, LoginForm
-import models
+from forms import ReviewForm, SignUpForm, LoginForm, PlantForm
+
+
 
 app = Flask(__name__, static_url_path='/static')
 CORS(app)
-app.config['SECRET_KEY'] = 'any string works here'
 
 DEBUG = True
 PORT = 8000
@@ -31,11 +30,13 @@ login_manager.login_view = 'login'
 def before_request():
     g.db= models.DATABASE
     g.db.connect()
+    g.user = current_user 
 
 @app.after_request
 def after_request(response):
     g.db.close()
     return response
+
 
 @app.route('/review', methods=['GET', 'POST'])
 def make_review():
@@ -45,13 +46,11 @@ def make_review():
       # if it is, we create a new review
       print(
         form.plant.data,
-        form.user.data,
         form.rating.data,
         form.text.data
       )
       models.Review.create(
         plant=form.plant.data.strip(),
-        user=form.user.data.strip(),
         rating=form.rating.data,
         text=form.text.data.strip()
       )
@@ -72,15 +71,47 @@ def show_reviews():
 def landingPage():
     return render_template('landing.html')
 
-@app.route('/profile')
-def profilePage():
-    return render_template('profile.html')
-
-
-@app.route('/swipe')
+@app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
-    form = ReviewForm()
+    form = PlantForm()
+
+    if form.validate_on_submit():
+        models.userPlants.create(user=g.user._get_current_object(),
+                                content=form.content.data.strip())
     return render_template('swipe.html',swipe=swipe, form=form)
+
+@app.route('/stream', methods=['GET','POST'])
+def stream(username=None):
+    # plant = Review.get(Review.id == 2)
+    # plant.delete_instance()
+    
+    form = ReviewForm()
+    if form.validate_on_submit():
+        models.Review.create(user=g.user._get_current_object(),
+                                plant=form.plant.data,
+                                rating= form.rating.data,
+                                text=form.text.data)
+    
+    template = 'stream.html'
+    if username and username != current_user.username:
+        user = models.User.select().where(models.User.username == username).get()
+        stream = user.reviews.limit(100)
+    else:
+        stream = current_user.get_stream().limit(100)
+        user = current_user
+    if username:
+        template = 'profile.html'
+    return render_template(template, stream=stream, form=form, username=username)
+
+@app.route('/delete', methods=['GET'])
+def delete():
+    reviews = models.Review.select()
+    idNumber= request.args.get('idNumber')
+    if idNumber == Review.id:
+        plant = Review.get(Review.id == idNumber)
+        plant.delete_instance()
+
+    return redirect(url_for('stream'))
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signupPage():
@@ -128,6 +159,8 @@ def logout():
     logout_user()
     flash("Logged Out")
     return redirect(url_for('swipePage'))
+
+
 
 
 

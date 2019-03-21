@@ -1,0 +1,42 @@
+[
+    {
+        "Difficulty": "1",
+        "id": "4",
+        "image": "static/Abutilon.jpg",
+        "light": "4",
+        "species": "Abutilon",
+        "watering": "3"
+    },
+    {
+        "Difficulty": "2",
+        "id": "5",
+        "image": "static/african-daisy.jpg",
+        "light": "4",
+        "species": "African Daisies",
+        "watering": "3"
+    },
+    {
+        "Difficulty": "3",
+        "id": "6",
+        "image": "static/Aloe.jpg",
+        "light": "4",
+        "species": "Aloe Vera",
+        "watering": "3"
+    },
+    {
+        "Difficulty": "1",
+        "id": "7",
+        "image": "static/Crocus.jpg",
+        "light": "4",
+        "species": "Crocus",
+        "watering": "3"
+    },
+    {
+        "Difficulty": "2",
+        "id": "8",
+        "image": "static/Cyclamen.jpg",
+        "light": "4",
+        "species": "Cyclamen",
+        "watering": "3"
+    }
+]

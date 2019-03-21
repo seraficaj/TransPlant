@@ -3,14 +3,7 @@ from flask_wtf import FlaskForm as Form
 from wtforms import TextField, IntegerField, TextAreaField, SubmitField
 from models import Review
 
-class ReviewForm(Form):
-  plant = TextField("Species Name") 
-  user = TextField("Posted By:")
-  rating = IntegerField("Rating in stars")
-  text = TextAreaField("Insert Review Text body here")
-  submit = SubmitField("create new Review")
-
-from models import User
+from models import User, userPlants
 
 from wtforms import StringField, PasswordField, TextAreaField, SubmitField
 from wtforms.validators import (DataRequired, Regexp, ValidationError, Email,
@@ -18,9 +11,13 @@ from wtforms.validators import (DataRequired, Regexp, ValidationError, Email,
 
 
 class ReviewForm(Form):
-  review = TextAreaField("Review this plant: ")
-  submit = SubmitField('Submit Review')
+  plant = TextField("Species Name")
+  rating = IntegerField("Rating in stars")
+  text = TextAreaField("Insert Review Text body here")
+  submit = SubmitField("create new Review")
 
+class PlantForm(Form):
+    content= TextAreaField("Enter Post here", validators=[DataRequired()])
 
 def name_exists(form, field):
     if User.select().where(User.username == field.data).exists():
