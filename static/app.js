@@ -30,6 +30,15 @@ $( document ).ready(function() {
             i= (i+1)%json.length;
             setHtml(i)
         }); //end of no click function
-    });//end of getJson functuion
+    });//end of getJson function
+
+    $('.mySpan').hide()
+    $('.editButton').click(function(e){
+        $('.mySpan').show()
+        console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+    })
+
+
 
 }); //end of document.ready  
