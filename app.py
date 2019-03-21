@@ -68,13 +68,13 @@ def stream(username=None):
 
     # Review.plant = form2.plant.data
     
-    reviews = models.Review.select()
-    idNumber= request.args.get('idNumber')
-    newValue= request.args.get('newValue')
+    # reviews = models.Review.select()
+    # idNumber= request.args.get('idNumber')
+    # newValue= request.args.get('newValue')
 
-    plant = Review.get(Review.id == 1)
-    plant.plant = form2.plant.data
-    plant.save()
+    # plant = Review.get(Review.id == 1)
+    # plant.plant = form2.plant.data
+    # plant.save()
 
 
     if form.validate_on_submit():
