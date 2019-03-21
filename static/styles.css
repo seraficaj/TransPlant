@@ -23,16 +23,10 @@
     justify-content: center;
 }
 
-#video-background {
-    right: 0;
-    bottom: 0;
-    min-width: 100vw;
-    min-height: 100vh;
-    width: auto;
-    height: auto;
-    z-index: 2;
+.carousel-item, img {
+    width: 100px;
+    height: 50vh;
 }
-
 .signup {
     margin-left: 24%;
 }
