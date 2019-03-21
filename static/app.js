@@ -1,33 +1,37 @@
-$( document ).ready(function() {
-    $.getJSON(("static/plant.json"), function(json) {
+$(document).ready(function () {
+    $.getJSON(("static/plant.json"), function (json) {
 
-        function setHtml(z){
-            $(".species").html('Species: '+json[z].species)
-            $(".difficulty").html('Level of Difficulty: '+json[z].Difficulty)
+        function setHtml(z) {
+            $(".species").html('Species: ' + json[z].species)
+            $(".difficulty").html('Level of Difficulty: ' + json[z].Difficulty)
             $(".water").html('Level of Watering: ' + json[z].watering)
             $('.plantImage').attr('src', json[z].image)
             $('.light').html('Amount of Light: ' + json[z].light)
         }
-    
+
         //initial plant showing
         setHtml(0)
 
-        var i = 0;  
+        let i = 0;
 
 
-        $(".yesButton").click(function(){
-            i= (i+1)%json.length;
+        $(".yesButton").click(function (e) {
             setHtml(i)
-            if (i==0){
-                $('.yasPlants').append('<li>' + json[json.length-1].species+ '</li>')
-            }else{
-                $('.yasPlants').append('<li>' + json[i-1].species+ '</li>')
+            if (e.target === undefined) return;
+
+            i = (i + 1)
+            //  % json.length;
+            if (i == 0) {
+                $('.yasPlants').append('<li>' + json[i].species + '</li>')
+            } else {
+                $('.yasPlants').append('<li>' + json[i - 1].species + '</li>')
             }
 
         }); //end of yes click function 
 
-        $(".noButton").click(function(){
-            i= (i+1)%json.length;
+
+        $(".noButton").click(function () {
+            i = (i + 1) % json.length;
             setHtml(i)
         }); //end of no click function
     });//end of getJson function
@@ -41,4 +45,4 @@ $( document ).ready(function() {
 
 
 
-}); //end of document.ready  
+}); //end of document.ready

@@ -1,0 +1,41 @@
+/* ! Background image for signin  */
+.backgroundImage {
+    background-image: url("/static/login.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+
+/* ! Background image for signup  */
+.signupBackgroundImage {
+    background-image: url("/static/signup.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+}
+
+.backgroundImage {
+    justify-content: center;
+}
+
+.field input,
+#submit {
+    height: 3em;
+    width: 27em;
+    font-size: 18px;
+}
+
+.form {
+    margin-left: 16%;
+}
+
+/* ! Resizing the images  */
+.card img {
+    width: 400px;
+    height: 400px;
+}
