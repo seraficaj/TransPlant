@@ -1,0 +1,8 @@
+.swipeCard{ 
+  max-width: 500px;
+}
+
+.swipeCard .plantImage{
+  width: 300px;
+  height: 300px;
+}

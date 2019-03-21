@@ -4,31 +4,32 @@
 
 {% block content %}
 <h1>Swipe Page</h1>
-    <div >
+    <div class="card swipeCard">
          <div>
-             <img class= "plantImage"  />
+             <img class="plantImage"  />
         </div>
-        
+        <!--ONLY SHOW WHEN YOU SWIPED THROUGH ALL-->
+        <div class="swipedThru" style="display:none;color:red">
+            <h2>You swiped through all the cards!</h2>
+        </div>
         <div>
-            <span class = "species">Species</span>
+            <span class="species">Species</span>
         </div>
 
         <div>
-            <span class = "difficulty">Difficulty</span>
+            <span class="difficulty">Difficulty</span>
         </div>  
 
         <div>
-        <span class = "water">Water</span>
+        <span class="water">Water</span>
         </div>
 
         <div>
-            <span class = "light">Light</span>
+            <span class="light">Light</span>
         </div>
-
-
     </div>
-    <button class = "yesButton">YEUUUHHH</button>
-    <button class = "noButton">NOIIII</button>
+    <button class = "btn btn-success yesButton">YEUUUHHH</button>
+    <button class = "btn btn-danger noButton">NOIIII</button>
 
 
     <div>

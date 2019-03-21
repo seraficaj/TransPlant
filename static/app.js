@@ -10,19 +10,29 @@ $( document ).ready(function() {
         //initial plant showing
         let i = 0;
         setHtml(0)
-
+        //navigate thru cards
         $('.yesButton').click( () => {
             if (i < json.length - 1) {
+                //add plant to saved bbz list
+                $('.yasPlants').append(`<li>${json[i].species}`);
+                //go onto next card
                 i++;
                 setHtml(i);
                 console.log(i);
             }
+            else {
+                $('.swipedThru').css("display","block");
+            }
         })
+        //thank u next button
         $('.noButton').click( () => {
             if (i < json.length - 1) {
                 i++;
                 setHtml(i);
                 console.log(i);
+            }
+            else {
+                $('.swipedThru').css("display","block");
             }
         })
 
