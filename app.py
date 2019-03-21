@@ -9,7 +9,7 @@ from flask_cors import CORS
 import models
 from models import Review, userPlants
 
-from forms import ReviewForm, SignUpForm, LoginForm, PlantForm
+from forms import ReviewForm, SignUpForm, LoginForm, PlantForm, EditReviewForm
 
 
 
@@ -38,35 +38,6 @@ def after_request(response):
     return response
 
 
-@app.route('/review', methods=['GET', 'POST'])
-def make_review():
-    form = ReviewForm()
-
-    if form.validate_on_submit():
-      # if it is, we create a new review
-      print(
-        form.plant.data,
-        form.rating.data,
-        form.text.data
-      )
-      models.Review.create(
-        plant=form.plant.data.strip(),
-        rating=form.rating.data,
-        text=form.text.data.strip()
-      )
-      flash("NEW REVIEW {}".format(form.plant.data))
-      # and redirect to the main reviews index
-      return redirect('/reviews')
-      
-    # if the submission isn't valid, send the user back to the original view
-    return render_template("review_form.html", title="New Review", form=form)
-
-@app.route('/reviews')
-def show_reviews():
-  reviews = models.Review.select().limit(100)
-  return render_template("reviews.html", reviews=reviews)
-
-
 @app.route('/')
 def landingPage():
     return render_template('landing.html')
@@ -80,12 +51,32 @@ def swipePage(swipe=None):
                                 content=form.content.data.strip())
     return render_template('swipe.html',swipe=swipe, form=form)
 
+
 @app.route('/stream', methods=['GET','POST'])
 def stream(username=None):
-    # plant = Review.get(Review.id == 2)
-    # plant.delete_instance()
-    
+
     form = ReviewForm()
+    form2 = EditReviewForm()
+        
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    print(form2.plant.data)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+
+    # reviews = models.Review.select()
+
+    # idNumber2= request.args.get('idNumber2')
+
+    # Review.plant = form2.plant.data
+    
+    reviews = models.Review.select()
+    idNumber= request.args.get('idNumber')
+    newValue= request.args.get('newValue')
+
+    plant = Review.get(Review.id == 1)
+    plant.plant = form2.plant.data
+    plant.save()
+
+
     if form.validate_on_submit():
         models.Review.create(user=g.user._get_current_object(),
                                 plant=form.plant.data,
@@ -101,7 +92,7 @@ def stream(username=None):
         user = current_user
     if username:
         template = 'profile.html'
-    return render_template(template, stream=stream, form=form, username=username)
+    return render_template(template, stream=stream, form=form, form2= form2, username=username)
 
 @app.route('/delete', methods=['GET'])
 def delete():
@@ -112,6 +103,21 @@ def delete():
         plant.delete_instance()
 
     return redirect(url_for('stream'))
+
+# @app.route('/edit', methods=['GET'])
+# def edit():
+#     form2= EditReviewForm()
+    
+    reviews = models.Review.select()
+    idNumber= request.args.get('idNumber')
+    newValue= request.args.get('newValue')
+    if idNumber == Review.id:
+        plant = Review.get(Review.id == idNume)
+        plant.plant = 'HELP'
+        plant.save()
+
+#     return redirect(url_for('stream'))
+
 
 @app.route('/signup', methods=('GET', 'POST'))
 def signupPage():
@@ -159,8 +165,6 @@ def logout():
     logout_user()
     flash("Logged Out")
     return redirect(url_for('swipePage'))
-
-
 
 
 
