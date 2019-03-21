@@ -1,16 +1,25 @@
 $( document ).ready(function() {
     $.getJSON(("static/plant.json"), function(json) {
         function setHtml(z){
-            $(".species").html('Species: '+json[z].species)
-            $(".difficulty").html('Level of Difficulty: '+json[z].Difficulty)
-            $(".water").html('Level of Watering: ' + json[z].watering)
-            $('.plantImage').attr('src', json[z].image)
-            $('.light').html('Amount of Light: ' + json[z].light)
+            $(".species").html('Species: '+json[z].species);
+            $(".difficulty").html('Level of Difficulty: '+json[z].Difficulty);
+            $(".water").html('Level of Watering: ' + json[z].watering);
+            $('.plantImage').attr('src', json[z].image);
+            $('.light').html('Amount of Light: ' + json[z].light);
         }
         //initial plant showing
+        let i = 0;
         setHtml(0)
 
-        var i = 0;  
+        $('.yesButton').click( () => {
+            if (i < json.length - 1) {
+                i++;
+                setHtml(i);
+                console.log(i);
+            }
+        })
+        $('noButton').click( () => {
+        })
 
 
         // $(".yesButton").click(function(){
