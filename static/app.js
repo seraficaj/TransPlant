@@ -11,14 +11,10 @@ $(document).ready(function () {
 
         //initial plant showing
         setHtml(0)
-
         let i = 0;
-
-
         $(".yesButton").click(function (e) {
             setHtml(i)
             if (e.target === undefined) return;
-
             i = (i + 1)
             //  % json.length;
             if (i == 0) {
@@ -29,20 +25,16 @@ $(document).ready(function () {
 
         }); //end of yes click function 
 
-
         $(".noButton").click(function () {
             i = (i + 1) % json.length;
             setHtml(i)
         }); //end of no click function
-    });//end of getJson function
+    }); //end of getJson function
 
     $('.mySpan').hide()
-    $('.editButton').click(function(e){
+    $('.editButton').click(function (e) {
         $('.mySpan').show()
         console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-
     })
 
-
-
-}); //end of document.ready
+}) //end of document.ready
