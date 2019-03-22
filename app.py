@@ -58,6 +58,11 @@ def stream(username=None):
 
     form = ReviewForm()
     form2 = EditReviewForm()
+        
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # print(form2.plant.data)
+    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    formData= form2.idNumber.data
 
     if form2.idNumber.data ==None:
         print("SAAAAAAAAAD")
@@ -70,8 +75,13 @@ def stream(username=None):
             plant.rating= form2.rating.data
             plant.plant = form2.plant.data
             plant.save()
-    
-
+            # try:
+            #     plant = Review.get(Review.id== (intFormData) )
+            #     plant.plant = form.plant.data
+            #     plant.save()
+            # except models.DoesNotExist:
+            #     flash("Not a match")
+        
     if form.validate_on_submit():
         models.Review.create(user=g.user._get_current_object(),
                                 plant=form.plant.data,
@@ -88,7 +98,6 @@ def stream(username=None):
     else:
         stream = current_user.get_stream().limit(100) 
         stream2 = current_user.get_stream2().limit(100) 
-
         user = current_user
     if username:
         template = 'profile.html'
