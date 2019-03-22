@@ -14,6 +14,15 @@ $( document ).ready(function() {
 
         var i = 0;  
 
+        $('.submitLink').click(function(e){
+            e.preventDefault()
+            $('#editForm').submit()
+            
+            
+        })
+
+    
+
 
         $(".yesButton").click(function(){
             i= (i+1)%json.length;

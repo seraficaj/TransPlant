@@ -59,22 +59,39 @@ def stream(username=None):
     form2 = EditReviewForm()
         
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(form2.plant.data)
+    # print(form2.plant.data)
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    formData= form2.idNumber.data
 
-    # reviews = models.Review.select()
+    if form2.idNumber.data ==None:
+        print("SAAAAAAAAAD")
+    else:
+        intFormData= int(formData)
+        print(intFormData)
+        if Review.id==intFormData:
+            plant = Review.get(Review.id== (intFormData) )
+            plant.plant = form.plant.data
+            plant.save()
+            # try:
+            #     plant = Review.get(Review.id== (intFormData) )
+            #     plant.plant = form.plant.data
+            #     plant.save()
+            # except models.DoesNotExist:
+            #     flash("Not a match")
+        
 
-    # idNumber2= request.args.get('idNumber2')
 
-    # Review.plant = form2.plant.data
+    # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # print(type(intFormData))
+    # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     
-    # reviews = models.Review.select()
-    # idNumber= request.args.get('idNumber')
-    # newValue= request.args.get('newValue')
+    
+   
 
-    # plant = Review.get(Review.id == 1)
-    # plant.plant = form2.plant.data
-    # plant.save()
+
+   
+
+    
 
 
     if form.validate_on_submit():
@@ -108,14 +125,6 @@ def delete():
 # def edit():
 #     form2= EditReviewForm()
     
-    reviews = models.Review.select()
-    idNumber= request.args.get('idNumber')
-    newValue= request.args.get('newValue')
-    if idNumber == Review.id:
-        plant = Review.get(Review.id == idNume)
-        plant.plant = 'HELP'
-        plant.save()
-
 #     return redirect(url_for('stream'))
 
 

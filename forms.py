@@ -20,7 +20,7 @@ class EditReviewForm(Form):
   plant = TextField("Species Name")
   rating = IntegerField("Rating in stars")
   text = TextAreaField("Insert Review Text body here")
-  submit = SubmitField("Save")
+  idNumber = IntegerField("idNumber")
 
 
 class PlantForm(Form):
