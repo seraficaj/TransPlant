@@ -40,3 +40,7 @@
     height: 400px;
 }
 
+.swipedThru {
+    display: hidden;
+    color: red;
+}

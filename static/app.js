@@ -1,40 +1,55 @@
-$(document).ready(function () {
-    $.getJSON(("static/plant.json"), function (json) {
-
-        function setHtml(z) {
-            $(".species").html('Species: ' + json[z].species)
-            $(".difficulty").html('Level of Difficulty: ' + json[z].Difficulty)
+$( document ).ready(function() {
+    $.getJSON(("static/plant.json"), function(json) {
+        function setHtml(z){
+            $(".species").html('Species: '+json[z].species)
+            $(".difficulty").html('Level of Difficulty: '+json[z].Difficulty)
             $(".water").html('Level of Watering: ' + json[z].watering)
             $('.plantImage').attr('src', json[z].image)
             $('.light').html('Amount of Light: ' + json[z].light)
         }
-
         //initial plant showing
-        setHtml(0)
         let i = 0;
-        $(".yesButton").click(function (e) {
-            setHtml(i)
-            if (e.target === undefined) return;
-            i = (i + 1)
-            //  % json.length;
-            if (i == 0) {
-                $('.yasPlants').append('<li>' + json[i].species + '</li>')
+        setHtml(0)
+        //navigate thru cards
+        $('.yesButton').click( () => {
+            if (i < json.length) {
+                //add plant to saved bbz list
+                $('.yasPlants').append(`<li>${json[i].species}`);
+                //go onto next card
+                i++;
+                setHtml(i);
+                console.log(i);
+            } else if (i == json.length) { 
+                $('.swipedThru').css("display","block");
             } else {
-                $('.yasPlants').append('<li>' + json[i - 1].species + '</li>')
+                $('.swipedThru').css("display","block");
             }
+        })
+        //thank u next button
+        $('.noButton').click( () => {
+            if (i < json.length - 1) {
+                i++;
+                setHtml(i);
+                console.log(i);
+            }
+            else {
+                $('.swipedThru').css("display","block");
+            }
+        })
+        $('.mySpan').hide()
+        $('.editButton').click(function(e){
+            $('.mySpan').show()
+            console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        })
+    }); //end of document.ready
+})
 
-        }); //end of yes click function 
 
-        $(".noButton").click(function () {
-            i = (i + 1) % json.length;
-            setHtml(i)
-        }); //end of no click function
-    }); //end of getJson function
 
-    $('.mySpan').hide()
-    $('.editButton').click(function (e) {
-        $('.mySpan').show()
-        console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    })
 
-}) //end of document.ready
+
+
+
+
+
+
