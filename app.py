@@ -12,7 +12,6 @@ from models import Review, userPlants
 from forms import ReviewForm, SignUpForm, LoginForm, PlantForm, EditReviewForm
 
 
-
 app = Flask(__name__, static_url_path='/static')
 CORS(app)
 
@@ -45,10 +44,12 @@ def landingPage():
 @app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
     form3 = PlantForm()
-
     if form3.validate_on_submit():
         models.userPlants.create(user=g.user._get_current_object(),
-                                content=form.content.data.strip())
+                                userPlants=form3.userPlants.data)
+
+   
+
     return render_template('swipe.html',swipe=swipe, form3=form3)
 
 
@@ -57,11 +58,6 @@ def stream(username=None):
 
     form = ReviewForm()
     form2 = EditReviewForm()
-        
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    # print(form2.plant.data)
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    formData= form2.idNumber.data
 
     if form2.idNumber.data ==None:
         print("SAAAAAAAAAD")
@@ -74,7 +70,7 @@ def stream(username=None):
             plant.rating= form2.rating.data
             plant.plant = form2.plant.data
             plant.save()
-         
+    
 
     if form.validate_on_submit():
         models.Review.create(user=g.user._get_current_object(),
@@ -85,13 +81,18 @@ def stream(username=None):
     template = 'stream.html'
     if username and username != current_user.username:
         user = models.User.select().where(models.User.username == username).get()
-        stream = user.reviews.limit(100)
+        stream = user.reviews.limit(100) 
+        stream2 = user.swipe.limit(100) 
+
+
     else:
-        stream = current_user.get_stream().limit(100)
+        stream = current_user.get_stream().limit(100) 
+        stream2 = current_user.get_stream2().limit(100) 
+
         user = current_user
     if username:
         template = 'profile.html'
-    return render_template(template, stream=stream, form=form, form2= form2, username=username)
+    return render_template(template, stream=stream,stream2=stream2, form=form, form2= form2,form3=form, username=username,user=user)
 
 @app.route('/delete', methods=['GET'])
 def delete():

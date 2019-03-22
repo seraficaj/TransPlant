@@ -40,10 +40,8 @@
 
 <form method="POST" action="">
     {{ form3.hidden_tag() }}
-    {% for field in form3 %}
-    {{ render_field(field) }}
-    {% endfor %}
-    <button class="submitButton" type="submit">Post</button>
+    <input id="userPlants" name="userPlants" type="text" value="">
+    <button id= "submit" type="submit" >Post</button>
 </form>
 
 

@@ -7,6 +7,9 @@ $( document ).ready(function() {
             $('.plantImage').attr('src', json[z].image)
             $('.light').html('Amount of Light: ' + json[z].light)
         }
+
+        let userPlantArray = []
+
         //initial plant showing
         let i = 0;
         setHtml(0)
@@ -15,10 +18,12 @@ $( document ).ready(function() {
             if (i < json.length) {
                 //add plant to saved bbz list
                 $('.yasPlants').append(`<li>${json[i].species}`);
+                userPlantArray.push(json[i].species)
+                $('#userPlants').val(userPlantArray)
+
                 //go onto next card
                 i++;
                 setHtml(i);
-                console.log(i);
             } else if (i == json.length) { 
                 $('.swipedThru').css("display","block");
             } else {
@@ -30,7 +35,7 @@ $( document ).ready(function() {
             if (i < json.length - 1) {
                 i++;
                 setHtml(i);
-                console.log(i);
+                
             }
             else {
                 $('.swipedThru').css("display","block");
@@ -41,8 +46,11 @@ $( document ).ready(function() {
             $('.mySpan').show()
             console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         })
-    }); //end of document.ready
-})
+
+
+    }); 
+
+})//end of document.ready
 
 
 
