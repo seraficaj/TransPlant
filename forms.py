@@ -24,7 +24,7 @@ class EditReviewForm(Form):
 
 
 class PlantForm(Form):
-    content= TextAreaField("Enter Plants Here", validators=[DataRequired()])
+    userPlants= TextField("Enter Plants Here")
 
 def name_exists(form, field):
     if User.select().where(User.username == field.data).exists():

@@ -75,7 +75,7 @@ class userPlants(Model):
       model = User,
       backref= 'swipe'
   )
-  content = TextField()
+  userPlants = TextField()
   class Meta:
     database = DATABASE
     
