@@ -4,33 +4,55 @@
 
 
 <form method="POST" action="" novalidate>
-    {{ form.hidden_tag() }}
+  {{ form.hidden_tag() }}
 
-    <div>
-      {{ form.plant.label }}
-      {{ form.plant() }}
-    </div>
-    <div>
-      {{ form.rating.label }}
-      {{ form.rating() }}
-    </div>
-    <div>
-      {{ form.text.label }}
-      {{ form.text() }}
-    </div>
+  <div>
+    {{ form.plant.label }}
+    {{ form.plant() }}
+  </div>
+  <div>
+    {{ form.rating.label }}
+    {{ form.rating() }}
+  </div>
+  <div>
+    {{ form.text.label }}
+    {{ form.text() }}
+  </div>
 
-    {{ form.submit() }}
-  </form>
+  {{ form.submit() }}
+</form>
 
 
 {% for reviews in stream %}
-      <div class="card" style="width: 18rem;">
-         <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=reviews.user.username) }}"></a></h5>
-        <div class="card-body">
-          <p class="card-text">{{ reviews.plant }}</p>
-          <a  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
-    
+<div class="card" style="width: 18rem;">
+  <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=reviews.user.username) }}"></a>
+  </h5>
+  <div class="card-body">
+    <span class="mySpan">
+      <form method="POST" action="" novalidate>
+        {{ form2.hidden_tag() }}
+
+        <div>
+          {{ form2.plant.label }}
+          <input id="plant" name="plant" type="text" value="{{reviews.plant}}">
         </div>
-      </div>
+        <div>
+          {{ form.rating.label }}
+          {{ form2.rating() }}
+        </div>
+        <div>
+          {{ form2.text.label }}
+          {{ form2.text() }}
+        </div>
+
+        <input id="submit" name="submit" type="submit" value="Save">
+      </form>
+    </span>
+    <p class="card-text">{{ reviews.plant }}</p>
+    <button class='editButton'>Edit</button>
+    <a href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
+
+  </div>
+</div>
 {% endfor %}
 {% endblock %}
