@@ -24,10 +24,10 @@ class User(UserMixin, Model):
         database = DATABASE  
         
     def get_reviews(self):
-        return Review.select().where(Review.user==self)
+        return userPlants.select().where(Review.user==self)
         
     def get_stream(self):
-        return Review.select().where(Review.user==self)
+        return userPlants.select().where(userPlants.user==self)
 
     @classmethod
     def create_user(cls, username, email, password, admin=False):
