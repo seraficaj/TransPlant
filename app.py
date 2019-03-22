@@ -44,12 +44,12 @@ def landingPage():
 
 @app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
-    form = PlantForm()
+    form3 = PlantForm()
 
-    if form.validate_on_submit():
+    if form3.validate_on_submit():
         models.userPlants.create(user=g.user._get_current_object(),
                                 content=form.content.data.strip())
-    return render_template('swipe.html',swipe=swipe, form=form)
+    return render_template('swipe.html',swipe=swipe, form3=form3)
 
 
 @app.route('/stream', methods=['GET','POST'])
@@ -59,23 +59,34 @@ def stream(username=None):
     form2 = EditReviewForm()
         
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    print(form2.plant.data)
+    # print(form2.plant.data)
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    formData= form2.idNumber.data
 
-    # reviews = models.Review.select()
+    if form2.idNumber.data ==None:
+        print("SAAAAAAAAAD")
+    else:
+        intFormData= int(formData)
+        print(intFormData)
+        if Review.id==intFormData:
+            plant = Review.get(Review.id== (intFormData) )
+            plant.text= form2.text.data
+            plant.rating= form2.rating.data
+            plant.plant = form2.plant.data
+            plant.save()
+            # try:
+            #     plant = Review.get(Review.id== (intFormData) )
+            #     plant.plant = form.plant.data
+            #     plant.save()
+            # except models.DoesNotExist:
+            #     flash("Not a match")
+        
 
-    # idNumber2= request.args.get('idNumber2')
 
-    # Review.plant = form2.plant.data
+    # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+    # print(type(intFormData))
+    # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     
-    # reviews = models.Review.select()
-    # idNumber= request.args.get('idNumber')
-    # newValue= request.args.get('newValue')
-
-    # plant = Review.get(Review.id == 1)
-    # plant.plant = form2.plant.data
-    # plant.save()
-
 
     if form.validate_on_submit():
         models.Review.create(user=g.user._get_current_object(),
@@ -108,14 +119,6 @@ def delete():
 # def edit():
 #     form2= EditReviewForm()
     
-    reviews = models.Review.select()
-    idNumber= request.args.get('idNumber')
-    newValue= request.args.get('newValue')
-    if idNumber == Review.id:
-        plant = Review.get(Review.id == idNume)
-        plant.plant = 'HELP'
-        plant.save()
-
 #     return redirect(url_for('stream'))
 
 

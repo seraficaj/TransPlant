@@ -38,12 +38,12 @@
 
 </div>
 
-<form method="POST" action="" class="group-form">
-    {{ form.hidden_tag() }}
-    {% for field in form %}
-    {{ render_field(field) }}
+<form method="POST" action="">
+    {{ form3.hidden_tag() }}
+    {% for field in form3 %}
+        {{ render_field(field) }}
     {% endfor %}
-    <button class="submitButton btn-btn-primary" type="submit">Post</button>
+    <button class="submitButton" type="submit" >Post</button>
 </form>
 
 

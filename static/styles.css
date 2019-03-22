@@ -40,8 +40,6 @@
     height: 400px;
 }
 
-
-/* show message when swiped through all the cards*/
 .swipedThru {
     display: hidden;
     color: red;
