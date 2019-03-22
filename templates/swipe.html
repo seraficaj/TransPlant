@@ -1,42 +1,38 @@
-
 {% extends "layout.html" %}
 {% from 'macros.html' import render_field %}
 
 {% block content %}
-<h1>Swipe Page</h1>
-    <div >
-         <div>
-             <img class= "plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
-        </div>
-        
-        <div>
-            <span class = "species">Species</span>
-        </div>
-
-        <div>
-            <span class = "difficulty">Difficulty</span>
-        </div>  
-
-        <div>
-        <span class = "water">Water</span>
-        </div>
-
-        <div>
-            <span class = "light">Light</span>
-        </div>
-
-
+<h1 class="text-center">Swipe Page</h1>
+<div class="card">
+    <div>
+        <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
     </div>
-    <button class = "yesButton">YEUUUHHH</button>
-    <button class = "noButton">NOIIII</button>
-
 
     <div>
-        <h1>Your Bebez</h1>
-        <ul class= yasPlants>
-        </ul>
-
+        <span class="species">Species</span>
     </div>
+
+    <div>
+        <span class="difficulty">Difficulty</span>
+    </div>
+
+    <div>
+        <span class="water">Water</span>
+    </div>
+
+    <div>
+        <span class="light">Light</span>
+    </div>
+
+</div>
+
+
+<div>
+    <h1>Your Bebez</h1>
+    <ul class="yasPlants">
+    </ul>
+
+</div>
 
     <form method="POST" action="">
             {{ form3.hidden_tag() }}

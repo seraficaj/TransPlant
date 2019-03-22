@@ -13,7 +13,7 @@ from forms import ReviewForm, SignUpForm, LoginForm, PlantForm, EditReviewForm
 
 
 
-app = Flask(__name__)
+app = Flask(__name__, static_url_path='/static')
 CORS(app)
 
 DEBUG = True

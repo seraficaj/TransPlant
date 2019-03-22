@@ -1,10 +1,17 @@
+{% extends "layout.html" %}
 {% from 'macros.html' import render_field %}
 
-<form method="POST" action="" class="form">
-    {{ form.hidden_tag() }}
-    {% for field in form %}
-        {{ render_field(field) }}
-    {% endfor %}
+{% block content %}
+<div class="signupBackgroundImage d-flex justify-content-center">
+    <div class="d-flex flex-column justify-content-center signup">
+        <form method="POST" action="" class="form-group">
+            {{ form.hidden_tag() }}
+            {% for field in form %}
+            {{ render_field(field) }}
+            {% endfor %}
+
+            <button class="btn btn-primary" type="submit" id="submit">Register!</button>
+        </form>
     </div>
-    <button type="submit" id="submit">Register!</button>
-</form>
+</div>
+{% endblock %}
