@@ -23,7 +23,11 @@
     <div>
         <span class="light">Light</span>
     </div>
-
+    <div class="swipedThru" style="display:none">You swiped through all the cards!</div>
+    <div class="btn-group">
+        <button class = "btn btn-success yesButton">YEUUUHHH</button>
+        <button class = "btn btn-danger noButton">NOIIII</button>
+    </div>
 </div>
 
 
@@ -34,13 +38,13 @@
 
 </div>
 
-    <form method="POST" action="">
-            {{ form3.hidden_tag() }}
-            {% for field in form3 %}
-                {{ render_field(field) }}
-            {% endfor %}
-            <button class="submitButton" type="submit" >Post</button>
-    </form>
+<form method="POST" action="">
+    {{ form3.hidden_tag() }}
+    {% for field in form3 %}
+        {{ render_field(field) }}
+    {% endfor %}
+    <button class="submitButton" type="submit" >Post</button>
+</form>
 
 
 {% endblock %}

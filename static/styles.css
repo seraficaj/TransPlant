@@ -39,3 +39,8 @@
     width: 400px;
     height: 400px;
 }
+
+.swipedThru {
+    display: hidden;
+    color: red;
+}
