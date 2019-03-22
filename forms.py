@@ -1,2 +1,71 @@
 from flask_wtf import FlaskForm as Form
-from wtforms import TextField, TextAreaField, SubmitField
+
+from wtforms import TextField, IntegerField, TextAreaField, SubmitField
+from models import Review
+
+from models import User, userPlants
+
+from wtforms import StringField, PasswordField, TextAreaField, SubmitField
+from wtforms.validators import (DataRequired, Regexp, ValidationError, Email,
+                               Length, EqualTo)
+
+
+class ReviewForm(Form):
+  plant = TextField("Species Name")
+  rating = IntegerField("Rating in stars")
+  text = TextAreaField("Insert Review Text body here")
+  submit = SubmitField("create new Review")
+
+class EditReviewForm(Form):
+  plant = TextField("Species Name")
+  rating = IntegerField("Rating in stars")
+  text = TextAreaField("Insert Review Text body here")
+  idNumber = IntegerField("idNumber")
+
+
+class PlantForm(Form):
+    content= TextAreaField("Enter Plants Here", validators=[DataRequired()])
+
+def name_exists(form, field):
+    if User.select().where(User.username == field.data).exists():
+        raise ValidationError('User with that name already exists.')
+
+def email_exists(form, field):
+    if User.select().where(User.email == field.data).exists():
+        raise ValidationError('User with that email already exists.')
+
+class SignUpForm(Form):
+    username = StringField(
+        'Username',
+        validators=[
+            DataRequired(),
+            Regexp(
+                r'^[a-zA-Z0-9_]+$',
+                message=("Username should be one word, letters, "
+                         "numbers, and underscores only.")
+            ),
+            name_exists
+        ])
+    email = StringField(
+        'Email',
+        validators=[
+            DataRequired(),
+            Email(),
+            email_exists
+        ])
+    password = PasswordField(
+        'Password',
+        validators=[
+            DataRequired(),
+            Length(min=2),
+            EqualTo('password2', message='Passwords must match')
+        ])
+    password2 = PasswordField(
+        'Confirm Password',
+        validators=[DataRequired()]
+    )
+
+class LoginForm(Form):
+    email = StringField('Email', validators= [DataRequired(),Email()])
+    password = PasswordField ('Password', validators= [DataRequired()])
+
