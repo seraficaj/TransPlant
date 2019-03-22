@@ -39,8 +39,8 @@
     </div>
 
     <form method="POST" action="">
-            {{ form.hidden_tag() }}
-            {% for field in form %}
+            {{ form3.hidden_tag() }}
+            {% for field in form3 %}
                 {{ render_field(field) }}
             {% endfor %}
             <button class="submitButton" type="submit" >Post</button>

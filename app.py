@@ -44,12 +44,12 @@ def landingPage():
 
 @app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
-    form = PlantForm()
+    form3 = PlantForm()
 
-    if form.validate_on_submit():
+    if form3.validate_on_submit():
         models.userPlants.create(user=g.user._get_current_object(),
                                 content=form.content.data.strip())
-    return render_template('swipe.html',swipe=swipe, form=form)
+    return render_template('swipe.html',swipe=swipe, form3=form3)
 
 
 @app.route('/stream', methods=['GET','POST'])
@@ -70,7 +70,9 @@ def stream(username=None):
         print(intFormData)
         if Review.id==intFormData:
             plant = Review.get(Review.id== (intFormData) )
-            plant.plant = form.plant.data
+            plant.text= form2.text.data
+            plant.rating= form2.rating.data
+            plant.plant = form2.plant.data
             plant.save()
             # try:
             #     plant = Review.get(Review.id== (intFormData) )
@@ -85,14 +87,6 @@ def stream(username=None):
     # print(type(intFormData))
     # print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     
-    
-   
-
-
-   
-
-    
-
 
     if form.validate_on_submit():
         models.Review.create(user=g.user._get_current_object(),
