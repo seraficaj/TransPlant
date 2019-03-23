@@ -17,7 +17,9 @@
 </head>
 
 <body>
-    <nav class="navbar navbar-expand-lg navbar-light bg-light">
+
+    
+        <nav class="navbar navbar-expand-lg navbar-light bg-light">
         <div class="buttons">
             {% if current_user.is_authenticated %}
             <a class="navbar-brand" href="{{url_for('swipePage')}}" title="swipe">Swipe</a>
