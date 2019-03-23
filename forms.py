@@ -21,6 +21,7 @@ class EditReviewForm(Form):
   rating = IntegerField("Rating in stars")
   text = TextAreaField("Insert Review Text body here")
   idNumber = IntegerField("idNumber")
+  submit2 = SubmitField("Save Edit")
 
 
 class PlantForm(Form):
