@@ -52,10 +52,7 @@ def swipePage(swipe=None):
 
     return render_template('swipe.html', swipe=swipe, form3=form3)
 
-<<<<<<< HEAD
-=======
     return render_template('swipe.html',swipe=swipe,form3=form3)
->>>>>>> 7246bc31274417dc61ae00ec33b5f4196e1df760
 
 @app.route('/stream', methods=['GET', 'POST'])
 def stream(username=None):
@@ -67,39 +64,6 @@ def stream(username=None):
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     formData = form2.idNumber.data
 
-<<<<<<< HEAD
-    if form2.idNumber.data == None:
-        print("SAAAAAAAAAD")
-    else:
-        intFormData = int(formData)
-        print(intFormData)
-        if Review.id == intFormData:
-            plant = Review.get(Review.id == (intFormData))
-            plant.text = form2.text.data
-            plant.rating = form2.rating.data
-            plant.plant = form2.plant.data
-            plant.save()
-
-    if form.validate_on_submit():
-        models.Review.create(user=g.user._get_current_object(),
-                             plant=form.plant.data,
-                             rating=form.rating.data,
-                             text=form.text.data)
-
-    template = 'stream.html'
-    if username and username != current_user.username:
-        user = models.User.select().where(models.User.username == username).get()
-        stream = user.reviews.limit(100)
-        stream2 = user.swipe.limit(100)
-
-    else:
-        stream = current_user.get_stream().limit(100)
-        stream2 = current_user.get_stream2().limit(100)
-        user = current_user
-    if username:
-        template = 'profile.html'
-    return render_template(template, stream=stream, stream2=stream2, form=form, form2=form2, form3=form, username=username, user=user)
-=======
     user = models.User.select().where(models.User.username == current_user.username).get()
     stream = user.stream.limit(100) 
     stream2 = user.swipe.limit(100) 
@@ -117,25 +81,6 @@ def stream(username=None):
                 plant.plant = form2.plant.data
                 plant.save()
             
-            
-            
-                # try:
-                #     plant = Review.get(Review.id== (intFormData) )
-                #     plant.plant = form.plant.data
-                #     plant.save()
-                # except models.DoesNotExist:
-                #     flash("Not a match")
-
-    
-    
-        
-    # if username and username != current_user.username:
-        
-
-    # else:
-    #     stream = current_user.get_stream().limit(100) 
-    #     stream2 = current_user.get_stream2().limit(100) 
-    #     user = current_user
 
     return render_template('stream.html', stream=stream,stream2=stream2, form=form, form2= form2, username=username,user=user)
 
@@ -149,7 +94,6 @@ def create_review():
                                 rating= form.rating.data,
                                 text=form.text.data)
         return redirect(url_for('stream'))
->>>>>>> 7246bc31274417dc61ae00ec33b5f4196e1df760
 
 
 @app.route('/delete', methods=['GET'])
