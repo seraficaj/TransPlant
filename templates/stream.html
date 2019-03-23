@@ -3,24 +3,24 @@
 {% block content %}
 
 
-<form method="POST" action="" novalidate>
-  {{ form.hidden_tag() }}
+<form method="post" action="{{ url_for('create_review') }}" novalidate>
+    {{ form.hidden_tag() }}
 
-  <div>
-    {{ form.plant.label }}
-    {{ form.plant() }}
-  </div>
-  <div>
-    {{ form.rating.label }}
-    {{ form.rating() }}
-  </div>
-  <div>
-    {{ form.text.label }}
-    {{ form.text() }}
-  </div>
+    <div>
+      {{ form.plant.label }}
+      {{ form.plant() }}
+    </div>
+    <div>
+      {{ form.rating.label }}
+      {{ form.rating() }}
+    </div>
+    <div>
+      {{ form.text.label }}
+      {{ form.text() }}
+    </div>
 
-  {{ form.submit() }}
-</form>
+    {{ form.submit() }}
+  </form>
 
 
 {% for reviews in stream %}
@@ -46,25 +46,24 @@
                       <div>
                           <input hidden="hidden"  id="idNumber" name="idNumber" type="text" value="{{reviews.id}}">
                       </div>
-                      <input id="submit" name="submit" type="submit" value="Save">
+                      {{ form2.submit2() }}
+
                     </form>
               </span>
-          <p class="card-text"></p>{{ reviews.plant }}</p>
-          <p class="card-text"></p>{{ reviews.rating }}</p>
-          <p class="card-text"></p>{{ reviews.text}}</p>
+          <p class="card-text">{{ reviews.plant }}</p>
+          <p class="card-text">{{ reviews.rating }}</p>
+          <p class="card-text">{{ reviews.text }}</p>
+
           <button class='editButton' >Edit</button>
           <a  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
     
         </div>
-
-        <input id="submit" name="submit" type="submit" value="Save">
-      </form>
-    </span>
-    <p class="card-text">{{ reviews.plant }}</p>
-    <button class='editButton'>Edit</button>
-    <a href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
-
-  </div>
-</div>
+      </div>
 {% endfor %}
+
+{% for userPlants in stream2 %}
+    <p class="card-text">{{ userPlants.userPlants }}</p>
+
+{% endfor %}
+
 {% endblock %}

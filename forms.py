@@ -21,10 +21,11 @@ class EditReviewForm(Form):
   rating = IntegerField("Rating in stars")
   text = TextAreaField("Insert Review Text body here")
   idNumber = IntegerField("idNumber")
+  submit2 = SubmitField("Save Edit")
 
 
 class PlantForm(Form):
-    content= TextAreaField("Enter Plants Here", validators=[DataRequired()])
+    userPlants= TextField("Enter Plants Here")
 
 def name_exists(form, field):
     if User.select().where(User.username == field.data).exists():

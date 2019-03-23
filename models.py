@@ -23,9 +23,8 @@ class User(UserMixin, Model):
     class Meta:
         database = DATABASE  
         
-    def get_reviews(self):
-        return Review.select().where(Review.user==self)
-        
+    def get_stream2(self):
+        return userPlants.select().where(userPlants.user==self)
     def get_stream(self):
         return Review.select().where(Review.user==self)
 
@@ -75,7 +74,7 @@ class userPlants(Model):
       model = User,
       backref= 'swipe'
   )
-  content = TextField()
+  userPlants = TextField()
   class Meta:
     database = DATABASE
     
