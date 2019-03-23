@@ -1,5 +1,33 @@
 {% extends "layout.html" %}
 
+
 {% block content %}
-<h1 class="text-center">PlantSwiper</h1>
+
+<!-- !!!   slider  -->
+<div id="slides">
+    <div class="overlay"></div>
+    <div class="slides-container">
+        <img src="../static/carousel/plant1.jpeg" alt="plant1">
+        <img src="../static/carousel/plant2.jpeg" alt="plant2">
+        <img src="../static/carousel/plant3.jpeg" alt="plant3">
+        <img src="../static/carousel/plant4.jpeg" alt="plant4">
+        <img src="../static/carousel/plant5.jpeg" alt="plant5">
+        <img src="../static/carousel/plant6.jpeg" alt="plant">
+
+    </div>
+    <div class="titleMessage">
+        <div class="heading">
+
+            <p class="main animated fadeInRight">Trans<span><i class="fab fa-envira"></span></i> Plant</p>
+            <p class="sub typed">The love of gardening is a seed once sown that never dies.
+            </p>
+        </div>
+    </div>
+    <nav class="slides-navigation">
+        <a href="#" class="next"><i class="fas fa-angle-double-left"></i></a>
+        <a href="#" class="prev"><i class="fas fa-angle-double-right"></i></a>
+    </nav>
+</div>
+
+
 {% endblock %}
