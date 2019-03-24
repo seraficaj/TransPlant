@@ -46,11 +46,13 @@ def landingPage():
 @app.route('/swipe', methods=['GET', 'POST'])
 def swipePage(swipe=None):
     form3 = PlantForm()
+    form4 = EditProfileForm()     
+
     if form3.validate_on_submit():
         models.userPlants.create(user=g.user._get_current_object(),
                                  userPlants=form3.userPlants.data)
 
-    return render_template('swipe.html', swipe=swipe, form3=form3)
+    return render_template('swipe.html', swipe=swipe, form3=form3, form4=form4)
 
 
 @app.route('/profile', methods=['GET', 'POST'])

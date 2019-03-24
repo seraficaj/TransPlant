@@ -20,7 +20,7 @@
     
       {{ form4.city.label }}
 
-      <input class="form-control profileForm " id="city" name="city" type="text" value="{{ user.city }}">    
+      <input class="form-control profileForm city " id="city" name="city" type="text" value="{{ user.city }}">    
       
     {{ form4.submit4(class_="reviewButtons") }}
     
@@ -28,6 +28,10 @@
 </span>
 
 <button class='editProfileButton reviewButtons' >Edit Profile</button>
+
+<h3 class= "temp"></h3>
+<h4>Happy Swiping.</h4>
+
 
 
 <h1>My Plants and My Reviews</h1>
@@ -69,6 +73,8 @@
 {% endwith %}
 
 </div>
+
+
 
   
 {% for reviews in stream %}

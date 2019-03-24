@@ -134,7 +134,9 @@ nav a{
     width: 27em;
     font-size: 18px;
 }
-
+h3{
+    margin-top:20px;
+}
 .form {
     margin-left: 16%;
 }
