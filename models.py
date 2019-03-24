@@ -19,6 +19,8 @@ class User(UserMixin, Model):
     password = CharField(max_length=50)
     joined_at = DateTimeField(default=datetime.datetime.now)
     is_admin = BooleanField(default=False)
+    city = CharField()
+
 
     class Meta:
         database = DATABASE  
@@ -29,12 +31,13 @@ class User(UserMixin, Model):
         return Review.select().where(Review.user==self)
 
     @classmethod
-    def create_user(cls, username, email, password, admin=False):
+    def create_user(cls, username, email, password,city, admin=False):
         try:
             cls.create(
                 username=username,
                 email=email,
                 password=generate_password_hash(password),
+                city=city,
                 is_admin=admin)
         except IntegrityError:
             raise ValueError("User already exists")

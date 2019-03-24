@@ -112,7 +112,9 @@ nav a{
     margin-top:10px;
 }
 
-
+.profileForm {
+    width:30%;
+}
 .swipeCard{
     width: 400px;
     margin: auto;

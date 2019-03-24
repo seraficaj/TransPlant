@@ -85,7 +85,7 @@ def stream(username=None):
 def create_review(): 
     print('hi?')
     form = ReviewForm()     
-    if form.validate_on_submit():
+    if form.validate_on_submit() and  0< form.rating.data<6:
         models.Review.create(user=g.user._get_current_object(),
                                 plant=form.plant.data,
                                 rating= form.rating.data,
@@ -105,6 +105,7 @@ def edit_profile():
         print("AYYYYO")
         user = models.User.select().where(models.User.username == current_user.username).get()
         user.username = form4.username.data
+        user.city = form4.city.data
         user.save()
         return redirect(url_for('stream'))
 
@@ -129,6 +130,7 @@ def signupPage():
         models.User.create_user(
             username=form.username.data,
             email=form.email.data,
+            city= form.city.data,
             password=form.password.data
             )
         return redirect(url_for('landingPage'))
@@ -178,6 +180,7 @@ if __name__ == '__main__':
             username='rroy',
             email="rhea@rhea.com",
             password='password',
+            city= 'San Jose',
             admin=True
         )
     except ValueError:

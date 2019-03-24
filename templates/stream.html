@@ -3,25 +3,31 @@
 {% block content %}
 
 <div class="profileBackgroundImage ">
-<h1 class="main animated fadeInRight">Hello<span><i class="fab fa-envira"></span></i> {{ user.username }}</h1>
+<div class="main animated fadeInRight">
+<h1 >Hello<span><i class="fab fa-envira"></span></i> {{ user.username }}</h1>
+<h3>{{user.city}}</h3>
+</div>
 
 
 <span class ="editProfileSpan">
 
- 
 <form method="post" action="{{ url_for('edit_profile') }}" novalidate>
     {{ form4.hidden_tag() }}
 
-    <div>
       {{ form4.username.label }}
-      <input class="form-control" id="username" name="username" type="text" value="{{ user.username }}">    </div>
 
+      <input class="form-control profileForm " id="username" name="username" type="text" value="{{ user.username }}">  
+    
+      {{ form4.city.label }}
+
+      <input class="form-control profileForm " id="city" name="city" type="text" value="{{ user.city }}">    
+      
     {{ form4.submit4(class_="reviewButtons") }}
     
   </form>
 </span>
 
-<button class='editProfileButton reviewButtons' >Edit Username</button>
+<button class='editProfileButton reviewButtons' >Edit Profile</button>
 
 
 <h1>My Plants and My Reviews</h1>

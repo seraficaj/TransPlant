@@ -25,8 +25,8 @@ class EditReviewForm(Form):
 
 class EditProfileForm(Form):
     username = TextField("Username")
-    submit4 = SubmitField("Save Username")
-
+    city = TextField("City")
+    submit4 = SubmitField("Save Profile")
 
 
 class PlantForm(Form):
@@ -58,6 +58,11 @@ class SignUpForm(Form):
             DataRequired(),
             Email(),
             email_exists
+        ])
+    city = StringField(
+        'City',
+        validators=[
+            DataRequired(),
         ])
     password = PasswordField(
         'Password',

@@ -79,10 +79,9 @@ $(document).ready(function () {
         $('.editProfileSpan').hide()
         $('.editProfileButton').click(function (e) {
             $('.editProfileSpan').show()
+            $('.editProfileButton').hide()
+
         })
-        
-
-
     });
 
     // !! slider stuff
