@@ -9,6 +9,12 @@ $(document).ready(function () {
             $('.light').html('Amount of Light: ' + json[z].light)
         }
 
+        function animateImage(){
+            $(".plantImage").animate({ opacity: '0'},"fast");
+            $(".plantImage").hide().attr("src", json[i].image).animate({"margin-left": '500px' ,width: '400px', opacity: '0'},"fast");
+            $(".plantImage").animate({"margin-left": '0px', width: '400px', opacity: '1'}, "fast");
+        }
+
         let userPlantArray = []
         //initial plant showing
         let i = 0;
@@ -21,10 +27,7 @@ $(document).ready(function () {
                 userPlantArray.push(json[i].species)
                 $('#userPlants').val(userPlantArray)
 
-                $(".plantImage").animate({ opacity: '0'},"fast");
-                $(".plantImage").hide().attr("src", json[i].image).animate({"margin-left": '500px' ,width: '400px', opacity: '0'},"fast");
-                $(".plantImage").animate({"margin-left": '0px', width: '400px', opacity: '1'}, "fast");
-
+               animateImage()
 
 
                 //go onto next card
@@ -38,6 +41,8 @@ $(document).ready(function () {
         })
         //thank u next button
         $('.noButton').click(() => {
+            animateImage()
+
             if (i < json.length - 1) {
                 i++;
                 setHtml(i);
@@ -49,19 +54,16 @@ $(document).ready(function () {
         $('.mySpan').hide()
         $('.editButton').click(function (e) {
             $('.mySpan').show()
-            console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         })
 
         $('.editProfileSpan').hide()
         $('.editProfileButton').click(function (e) {
             $('.editProfileSpan').show()
-            console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         })
         
 
 
     });
-
 
     // !! slider stuff
     $(document).ready(function () {
