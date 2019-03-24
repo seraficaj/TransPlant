@@ -7,9 +7,9 @@ from flask_bcrypt import check_password_hash
 from flask_cors import CORS
 
 import models
-from models import Review, userPlants
+from models import Review, userPlants, User
 
-from forms import ReviewForm, SignUpForm, LoginForm, PlantForm, EditReviewForm
+from forms import ReviewForm, SignUpForm, LoginForm, PlantForm, EditReviewForm,EditProfileForm
 
 
 app = Flask(__name__, static_url_path='/static')
@@ -52,12 +52,13 @@ def swipePage(swipe=None):
 
     return render_template('swipe.html', swipe=swipe, form3=form3)
 
-    return render_template('swipe.html',swipe=swipe,form3=form3)
 
 @app.route('/stream', methods=['GET', 'POST'])
 def stream(username=None):
     form = ReviewForm()
     form2 = EditReviewForm()
+    form4 = EditProfileForm()     
+
 
     print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     # print(form2.plant.data)
@@ -82,7 +83,7 @@ def stream(username=None):
                 plant.save()
             
 
-    return render_template('stream.html', stream=stream,stream2=stream2, form=form, form2= form2, username=username,user=user)
+    return render_template('stream.html', stream=stream,stream2=stream2, form=form, form2= form2,form4=form4, username=username,user=user)
 
 @app.route('/create', methods=['POST'])
 def create_review(): 
@@ -94,6 +95,17 @@ def create_review():
                                 rating= form.rating.data,
                                 text=form.text.data)
         return redirect(url_for('stream'))
+
+@app.route('/editProfile', methods=['POST'])
+def edit_profile(): 
+    form4 = EditProfileForm()     
+    if form4.validate_on_submit():
+        print("AYYYYO")
+        user = models.User.select().where(models.User.username == current_user.username).get()
+        user.username = form4.username.data
+        user.save()
+        return redirect(url_for('stream'))
+
 
 
 @app.route('/delete', methods=['GET'])

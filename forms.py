@@ -23,6 +23,11 @@ class EditReviewForm(Form):
   idNumber = IntegerField("idNumber")
   submit2 = SubmitField("Save Edit")
 
+class EditProfileForm(Form):
+    username = TextField("Username")
+    submit4 = SubmitField("Save Username")
+
+
 
 class PlantForm(Form):
     userPlants= TextField("Enter Plants Here")

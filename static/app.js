@@ -46,6 +46,13 @@ $(document).ready(function () {
             console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
         })
 
+        $('.editProfileSpan').hide()
+        $('.editProfileButton').click(function (e) {
+            $('.editProfileSpan').show()
+            console.log("!!!!!!!!!!!!!!!!!!!!!!EDIT CLICKED!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
+        })
+        
+
 
     });
 

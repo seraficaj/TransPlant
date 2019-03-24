@@ -2,6 +2,27 @@
 
 {% block content %}
 
+
+
+
+<h1>Hello {{ user.username }}</h1>
+
+<span class ="editProfileSpan">
+<form method="post" action="{{ url_for('edit_profile') }}" novalidate>
+    {{ form4.hidden_tag() }}
+
+    <div>
+      {{ form4.username.label }}
+      <input id="username" name="username" type="text" value="{{ user.username }}">    </div>
+
+    {{ form4.submit4() }}
+    
+  </form>
+</span>
+
+<button class='editProfileButton' >Edit</button>
+
+
 <h1>My Plants and My Reviews</h1>
 <form method="post" action="{{ url_for('create_review') }}" novalidate>
     {{ form.hidden_tag() }}
@@ -25,7 +46,6 @@
 
 {% for reviews in stream %}
       <div class="card" style="width: 18rem;">
-         <h5 class="card-title"><a class="btn btn-primary" href="{{ url_for('stream', username=reviews.user.username) }}"></a></h5>
         <div class="card-body">
               <span class="mySpan">
                   <form method="POST" action="" novalidate>
@@ -54,7 +74,7 @@
           <p class="card-text">{{ reviews.rating }}</p>
           <p class="card-text">{{ reviews.text }}</p>
 
-          <button class='editButton btn-btn-primary' >Edit</button>
+          <button class='editB' >Edit</button>
           <a  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
     
         </div>
