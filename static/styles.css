@@ -27,10 +27,9 @@ body{
 
 .swipeBackgroundImage {
     background-image: url("/static/carousel/Planting.jpeg");
-    background-repeat: no-repeat;ma
+    background-repeat: no-repeat;
     background-position: center;
     width: 100vw;
-    height: 100vh;
     background-size: cover;
     color:white;
     text-align: center;
@@ -120,9 +119,6 @@ nav a{
     margin: auto;
 }
 
-.plantImageDiv{
-    height:500px;
-}
 
 .savedPlants{
     padding-bottom: 200px;

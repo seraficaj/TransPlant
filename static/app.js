@@ -16,15 +16,17 @@ $(document).ready(function () {
             }
         });
   
-
     $.getJSON(("static/plant.json"), function (json) {
         function setHtml(z) {
+            let starIcon = `<i class="fas fa-star"></i>`
+
             $(".species").html('Species: ' + json[z].species)
-            $(".difficulty").html('Level of Difficulty: ' + json[z].Difficulty)
-            $(".water").html('Level of Watering: ' + json[z].watering)
+            $(".difficulty").html(`Level of Difficulty: ${starIcon.repeat(json[z].Difficulty)}`);
+
+            $(".water").html(`Level of Watering: ${starIcon.repeat(json[z].watering)}`)
             $('.plantImage').attr('src', json[z].image)
             $(".previousImage").attr("src", json[z].image).animate({"margin-right": '400px' ,width: '400px', opacity: '1'},"slow")
-            $('.light').html('Amount of Light: ' + json[z].light)
+            $('.light').html('Amount of Light: ' + starIcon.repeat(json[z].light))
         }
 
         function animateImage(){
