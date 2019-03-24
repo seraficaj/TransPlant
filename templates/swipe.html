@@ -4,29 +4,29 @@
 {% block content %}
 <h1 class="text-center">Swipe Page</h1>
 <div class="card">
-    <div>
-        <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
-    </div>
+    <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
+    <div class="card-body">
+        <div>
+            <span class="species">Species</span>
+        </div>
 
-    <div>
-        <span class="species">Species</span>
-    </div>
+        <div>
+            <span class="difficulty">Difficulty</span>
+        </div>
 
-    <div>
-        <span class="difficulty">Difficulty</span>
-    </div>
+        <div>
+            <span class="water">Water</span>
+        </div>
 
-    <div>
-        <span class="water">Water</span>
-    </div>
+        <div>
+            <span class="light">Light</span>
+        </div>
 
-    <div>
-        <span class="light">Light</span>
-    </div>
-    <div class="swipedThru" style="display:none">You swiped through all the cards!</div>
-    <div class="btn-group">
-        <button class="btn btn-success yesButton">YEUUUHHH</button>
-        <button class="btn btn-danger noButton">NOIIII</button>
+        <div class="swipedThru" style="display:none">You swiped through all the cards!</div>
+        <div class="btn-group">
+            <button class="btn btn-success yesButton">YEUUUHHH</button>
+            <button class="btn btn-danger noButton">NOIIII</button>
+        </div>
     </div>
 </div>
 
@@ -41,7 +41,7 @@
 <form method="POST" action="">
     {{ form3.hidden_tag() }}
     <input hidden="hidden" id="userPlants" name="userPlants" type="text" value="">
-    <button id= "submit" type="submit" >Save ya Plantz</button>
+    <button id="submit" type="submit">Save ya Plantz</button>
 </form>
 
 
