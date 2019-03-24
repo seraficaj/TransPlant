@@ -21,13 +21,30 @@
             <p class="main animated fadeInRight">Trans<span><i class="fab fa-envira"></span></i> Plant</p>
             <p class="sub typed">The love of gardening is a seed once sown that never dies.
             </p>
+
+            <a href="#tutorial" class="btn btn-lg btn-success">Get Started!</a>
         </div>
     </div>
-    <!-- <nav class="slides-navigation">
-        <a href="#" class="next"><i class="fas fa-angle-double-left"></i></a>
-        <a href="#" class="prev"><i class="fas fa-angle-double-right"></i></a>
-    </nav> -->
 </div>
-
+<div id="tutorial">
+        <div class="card">
+            <div class="card-header">
+                <h2>Swipe to Adopt!</h2>
+            </div>
+            <div class ="plantImageDiv" >
+                <img class="plantImage" src="{{"https://i.redd.it/9cmnyrqbstcz.jpg"}}"/>
+            </div>
+            <div class="card-body">
+                <h4>Pick out ur new roommates with ease!</h4>
+            </div>
+            <div class="btn-group">
+                <a class="btn btn-lg btn-success" href="{{url_for('signupPage')}}">Sign Up Now!</a>
+            </div>
+            <div class="btn-group">
+                <button class="btn btn-success yesButton">YEUUUHHH</button>
+                <button class="btn btn-danger noButton">NOIIII</button>
+            </div>
+        </div>
+    </div>
 
 {% endblock %}
