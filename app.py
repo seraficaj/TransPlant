@@ -89,7 +89,6 @@ def stream(username=None):
 
 @app.route('/create', methods=['POST'])
 def create_review(): 
-    print('hi?')
     form = ReviewForm()     
     if form.validate_on_submit() and  0< form.rating.data<6:
         models.Review.create(user=g.user._get_current_object(),
