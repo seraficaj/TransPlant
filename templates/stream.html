@@ -2,7 +2,7 @@
 
 {% block content %}
 
-
+<h1>My Plants and My Reviews</h1>
 <form method="post" action="{{ url_for('create_review') }}" novalidate>
     {{ form.hidden_tag() }}
 
@@ -60,7 +60,7 @@
         </div>
       </div>
 {% endfor %}
-
+<h2>Saved Plants</h2>
 {% for userPlants in stream2 %}
     <p class="card-text">{{ userPlants.userPlants }}</p>
 

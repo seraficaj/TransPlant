@@ -135,7 +135,7 @@ def signupPage():
             email=form.email.data,
             password=form.password.data
             )
-        return redirect(url_for('swipePage'))
+        return redirect(url_for('landingPage'))
 
     return render_template('signup.html',form=form)
 
@@ -170,7 +170,7 @@ def load_user(userid):
 def logout():
     logout_user()
     flash("Logged Out")
-    return redirect(url_for('swipePage'))
+    return redirect(url_for('loginPage'))
 
 
 
