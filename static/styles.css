@@ -226,3 +226,11 @@ h3{
     font-size: 50px;
 
 }
+
+.field input {
+    width: 400px;
+}
+
+form button {
+    width: 400px;
+}
