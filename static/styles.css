@@ -1,4 +1,8 @@
 /* ! Background image for signin  */
+
+body{
+    font-family: 'Exo', sans-serif;
+}
 .backgroundImage {
     background-image: url("/static/carousel/plant1.jpeg");
     background-repeat: no-repeat;
@@ -19,8 +23,106 @@
     background-size: cover;
 }
 
+
+.swipeBackgroundImage {
+    background-image: url("/static/carousel/Planting.jpeg");
+    background-repeat: no-repeat;ma
+    background-position: center;
+    width: 100vw;
+    height: 100vh;
+    background-size: cover;
+    color:white;
+    text-align: center;
+}
+
+.profileBackgroundImage {
+    background-image: url("/static/carousel/Planting.jpeg");
+    background-repeat: no-repeat;
+    background-position: center;
+   
+    color:white;
+    text-align: center;
+}
+
 .backgroundImage {
     justify-content: center;
+}
+
+
+.form-control{
+    width:50%;
+    display: inline-block;
+}
+.card{
+    margin-left: 400px;
+    margin-right:400px;
+    margin-bottom:10px;
+    color:black;
+    text-align: center;
+
+}
+
+.reviewBackground{
+    background-color: rgba(249, 252, 255, 0.721) ; 
+
+}
+
+.reviewForm{
+   background-color: rgba(15, 99, 91, 0.762) ; 
+   width:50%;
+   margin: auto;
+   margin-bottom: 30px;
+   padding: 30px;
+   
+}
+
+ .savedPlants{
+    background-color: rgba(15, 99, 91, 0.762) ; 
+    width:50%;
+    margin: auto;
+ }
+
+
+
+nav{
+    background-color: rgba(15, 99, 91, 0.762)!important ; 
+
+
+}
+
+.yasPlants{
+    width:30%;
+    margin: auto;
+    background-color: rgba(15, 99, 91, 0.345)!important ; 
+    list-style: none;
+}
+
+nav a{
+    color:white !important;
+    font-weight: bolder !important;
+}
+.reviewButtons{
+    background-color:rgba(15, 99, 91, 0.66);
+    border: 2px solid rgb(234, 240, 234);
+    font-weight: bold;
+    font-size: 13px;
+    padding: 10px 24px;
+    color:white;
+    margin-top:10px;
+}
+
+
+.swipeCard{
+    width: 400px;
+    margin: auto;
+}
+
+.plantImageDiv{
+    height:500px;
+}
+
+.savedPlants{
+    padding-bottom: 200px;
 }
 
 .field input,
@@ -34,6 +136,10 @@
     margin-left: 16%;
 }
 
+.btn-success,.btn-danger{
+    margin:10px;
+    width:50%;
+}
 /* ! Resizing the images  */
 .card img {
     width: 400px;
@@ -44,6 +150,8 @@
     display: hidden;
     color: red;
 }
+
+
 
 
 /* ! for landinga page */
@@ -84,6 +192,5 @@
 
 .slides-navigation i {
     font-size: 50px;
-
 
 }

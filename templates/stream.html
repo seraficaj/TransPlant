@@ -2,88 +2,103 @@
 
 {% block content %}
 
+<div class="profileBackgroundImage ">
+<h1 class="main animated fadeInRight">Hello<span><i class="fab fa-envira"></span></i> {{ user.username }}</h1>
 
-
-
-<h1>Hello {{ user.username }}</h1>
 
 <span class ="editProfileSpan">
+
+ 
 <form method="post" action="{{ url_for('edit_profile') }}" novalidate>
     {{ form4.hidden_tag() }}
 
     <div>
       {{ form4.username.label }}
-      <input id="username" name="username" type="text" value="{{ user.username }}">    </div>
+      <input class="form-control" id="username" name="username" type="text" value="{{ user.username }}">    </div>
 
-    {{ form4.submit4() }}
+    {{ form4.submit4(class_="reviewButtons") }}
     
   </form>
 </span>
 
-<button class='editProfileButton' >Edit</button>
+<button class='editProfileButton reviewButtons' >Edit Username</button>
 
 
 <h1>My Plants and My Reviews</h1>
-<form method="post" action="{{ url_for('create_review') }}" novalidate>
+
+<div class= "reviewForm" >
+<form   method="post" action="{{ url_for('create_review') }}" novalidate>
     {{ form.hidden_tag() }}
 
     <div>
+      <div>
       {{ form.plant.label }}
-      {{ form.plant() }}
+    </div>
+      {{ form.plant(class_="form-control ") }}
     </div>
     <div>
+      <div>
       {{ form.rating.label }}
-      {{ form.rating() }}
+    </div>
+      {{ form.rating(class_="form-control") }}
     </div>
     <div>
+      <div>
       {{ form.text.label }}
-      {{ form.text() }}
+      </div>
+      {{ form.text(class_="form-control") }}
     </div>
 
-    {{ form.submit() }}
+    {{ form.submit(class_="reviewButtons") }}
   </form>
+</div>
 
-
+  
 {% for reviews in stream %}
-      <div class="card" style="width: 18rem;">
-        <div class="card-body">
+  
+      <div class="card reviewBackground">
+        <div class="card-body reviewBackground">
               <span class="mySpan">
                   <form method="POST" action="" novalidate>
                       {{ form2.hidden_tag() }}
                   
                       <div>
                         {{ form2.plant.label }}
-                        <input id="plant" name="plant" type="text" value="{{reviews.plant}}">
+                        <input class="form-control" id="plant" name="plant" type="text" value="{{reviews.plant}}">
                       </div>
                       <div>
                         {{ form.rating.label }}
-                        <input id="rating" name="rating" type="text" value="{{reviews.rating}}">
+                        <input class="form-control rating" id="rating" name="rating" type="text" value="{{reviews.rating}}">
                       </div>
                       <div>
                         {{ form2.text.label }}
-                        <input id="text" name="text" type="text" value="{{reviews.text}}">
+                        <input class="form-control" id="text" name="text" type="text" value="{{reviews.text}}">
                       </div>
                       <div>
-                          <input hidden="hidden"  id="idNumber" name="idNumber" type="text" value="{{reviews.id}}">
+                          <input class="form-control" hidden="hidden"  id="idNumber" name="idNumber" type="text" value="{{reviews.id}}">
                       </div>
-                      {{ form2.submit2() }}
+                      {{ form2.submit2(class_="reviewButtons") }}
 
                     </form>
               </span>
-          <p class="card-text">{{ reviews.plant }}</p>
-          <p class="card-text">{{ reviews.rating }}</p>
-          <p class="card-text">{{ reviews.text }}</p>
+          <p class="card-text">Species: {{ reviews.plant }}</p>
+          <p class="card-text ratingStar">Rating: {{ reviews.rating }}</p>
+          <p class="card-text">Review: {{ reviews.text }}</p>
 
-          <button class='editButton' >Edit</button>
-          <a  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
+          <button class='editButton reviewButtons ' >Edit</button>
+          <a class= "reviewButtons"  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
     
         </div>
       </div>
+   
 {% endfor %}
 <h2>Saved Plants</h2>
+<div class = "savedPlants">
 {% for userPlants in stream2 %}
-    <p class="card-text">{{ userPlants.userPlants }}</p>
-
+    <p  class="card-text ">{{ userPlants.userPlants }}</p>
 {% endfor %}
+</div>
+
+</div>
 
 {% endblock %}

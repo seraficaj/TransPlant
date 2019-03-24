@@ -13,13 +13,13 @@ from wtforms.validators import (DataRequired, Regexp, ValidationError, Email,
 class ReviewForm(Form):
   plant = TextField("Species Name")
   rating = IntegerField("Rating in stars")
-  text = TextAreaField("Insert Review Text body here")
-  submit = SubmitField("create new Review")
+  text = TextAreaField("Review Text")
+  submit = SubmitField("Create New Review")
 
 class EditReviewForm(Form):
   plant = TextField("Species Name")
   rating = IntegerField("Rating in stars")
-  text = TextAreaField("Insert Review Text body here")
+  text = TextAreaField("Review Text")
   idNumber = IntegerField("idNumber")
   submit2 = SubmitField("Save Edit")
 

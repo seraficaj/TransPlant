@@ -5,21 +5,27 @@ $(document).ready(function () {
             $(".difficulty").html('Level of Difficulty: ' + json[z].Difficulty)
             $(".water").html('Level of Watering: ' + json[z].watering)
             $('.plantImage').attr('src', json[z].image)
+            $(".previousImage").attr("src", json[z].image).animate({"margin-right": '400px' ,width: '400px', opacity: '1'},"slow")
             $('.light').html('Amount of Light: ' + json[z].light)
         }
 
         let userPlantArray = []
-
         //initial plant showing
         let i = 0;
         setHtml(0)
         //navigate thru cards
         $('.yesButton').click(() => {
             if (i < json.length) {
-                //add plant to saved bbz list
+               //add plant to saved bbz list
                 $('.yasPlants').append(`<li>${json[i].species}`);
                 userPlantArray.push(json[i].species)
                 $('#userPlants').val(userPlantArray)
+
+                $(".plantImage").animate({ opacity: '0'},"fast");
+                $(".plantImage").hide().attr("src", json[i].image).animate({"margin-left": '500px' ,width: '400px', opacity: '0'},"fast");
+                $(".plantImage").animate({"margin-left": '0px', width: '400px', opacity: '1'}, "fast");
+
+
 
                 //go onto next card
                 i++;
@@ -64,6 +70,9 @@ $(document).ready(function () {
             play: 5000,
             pagination: false
         });
+
+    
+
     })
 
 
