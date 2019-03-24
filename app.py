@@ -91,6 +91,12 @@ def create_review():
                                 rating= form.rating.data,
                                 text=form.text.data)
         return redirect(url_for('stream'))
+    else:
+        flash("Could not submit review, please ensure you have filled out all the fields correctly")
+        return redirect(url_for('stream'))
+
+       
+
 
 @app.route('/editProfile', methods=['POST'])
 def edit_profile(): 

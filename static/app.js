@@ -1,4 +1,24 @@
 $(document).ready(function () {
+
+    // var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
+    // var key = 'Your key here';
+
+
+    // $('form').on('submit', function (e) {
+    //     e.preventDefault();
+    
+    //     var city =  $('#city').val();
+    
+    //     $.ajax({
+    //         url: weatherUrl + city + '&units=imperial&appid=02e84210a52ed716535f02989864d080',
+    //         method: 'GET',
+    //         success: function (response) {
+    //             console.log(response.main.temp);
+    //             $('#temp').html('The weather in ' + city + ' is ' + response.main.temp + ' degrees.');
+    //         }
+    //     });
+    // });
+
     $.getJSON(("static/plant.json"), function (json) {
         function setHtml(z) {
             $(".species").html('Species: ' + json[z].species)

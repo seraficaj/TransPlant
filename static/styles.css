@@ -2,6 +2,7 @@
 
 body{
     font-family: 'Exo', sans-serif;
+    
 }
 .backgroundImage {
     background-image: url("/static/carousel/plant1.jpeg");
@@ -152,7 +153,25 @@ nav a{
 }
 
 
+.flashes,.notification, {
+    background-color: white;
+    color: black;
+    text-align: center;
+    font-size: 15px;
+    list-style: none !important;
+}
 
+.notification,.messages{
+    background-color:black;
+    color:white;
+    list-style: none!important;
+
+}
+
+.flashes2{
+    list-style: none!important;
+
+}
 
 /* ! for landinga page */
 .titleMessage {

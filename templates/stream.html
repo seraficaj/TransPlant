@@ -51,6 +51,17 @@
 
     {{ form.submit(class_="reviewButtons") }}
   </form>
+
+  {% with messages3 = get_flashed_messages(with_categories=true) %}
+  {% if messages3 %}
+    <ul class=flashes2>
+    {% for category, message3 in messages3 %}
+      <li class="{{ category }}">{{ message3 }}</li>
+    {% endfor %}
+    </ul>
+  {% endif %}
+{% endwith %}
+
 </div>
 
   

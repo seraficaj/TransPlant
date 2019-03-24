@@ -12,6 +12,17 @@
 
             <button class="btn btn-primary" type="submit" id="submit">Register!</button>
         </form>
+
+        {% with messages2 = get_flashed_messages(with_categories=true) %}
+        {% if messages2 %}
+          <ul class=flashes2>
+          {% for category, message2 in messages2 %}
+            <li class="{{ category }}">{{ message2 }}</li>
+          {% endfor %}
+          </ul>
+        {% endif %}
+      {% endwith %}
+
     </div>
 </div>
 {% endblock %}
