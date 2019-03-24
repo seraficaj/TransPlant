@@ -73,12 +73,16 @@ def stream(username=None):
         else:
             intFormData= int(formData)
             print(intFormData)
-            if Review.id==intFormData:
+            if Review.id==intFormData and  0< form.rating.data<6:
                 plant = Review.get(Review.id== (intFormData) )
                 plant.text= form2.text.data
                 plant.rating= form2.rating.data
                 plant.plant = form2.plant.data
                 plant.save()
+            else: 
+                flash("Could not edit review, please ensure you have filled out all the fields correctly")
+
+
             
 
     return render_template('stream.html', stream=stream,stream2=stream2, form=form, form2= form2,form4=form4, username=username,user=user)
@@ -110,6 +114,9 @@ def edit_profile():
         user.city = form4.city.data
         user.save()
         return redirect(url_for('stream'))
+    else:
+        return redirect(url_for('stream'))
+        
 
 
 
