@@ -32,7 +32,7 @@ $(document).ready(function () {
         function animateImage(){
             $(".plantImage").animate({ opacity: '0'},"fast");
             $(".plantImage").hide().attr("src", json[i].image).animate({"margin-left": '500px' ,width: '400px', opacity: '0'},"fast");
-            $(".plantImage").animate({"margin-left": '0px', width: '400px', opacity: '1'}, "fast");
+            $(".plantImage").animate({"margin-left": '0px', width: '400px', opacity: '1'}, "slow");
         }
 
         let userPlantArray = []
