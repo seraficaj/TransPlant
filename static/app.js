@@ -91,11 +91,5 @@ $(document).ready(function () {
             play: 5000,
             pagination: false
         });
-
-    
-
     })
-
-
-
 }) //end of document.ready

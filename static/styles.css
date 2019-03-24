@@ -69,11 +69,18 @@ body{
 
 .reviewForm{
    background-color: rgba(15, 99, 91, 0.762) ; 
-   width:50%;
+   width:75%;
    margin: auto;
    margin-bottom: 30px;
    padding: 30px;
-   
+}
+.reviewForm input {
+    width: 75%;
+    text-align: center;
+}
+
+.reviewForm textarea {
+    width: 75%;
 }
 
  .savedPlants{
@@ -114,6 +121,13 @@ nav a{
 .profileForm {
     width:30%;
 }
+
+.reviewCard {
+    width: 40%;
+    margin-left: 200px;
+    margin-right: 200px;
+}
+
 .swipeCard{
     width: 400px;
     margin: auto;
@@ -127,7 +141,6 @@ nav a{
 .field input,
 #submit {
     height: 3em;
-    width: 27em;
     font-size: 18px;
 }
 h3{
@@ -153,7 +166,7 @@ h3{
 }
 
 
-.flashes,.notification, {
+.flashes,.notification {
     background-color: white;
     color: black;
     text-align: center;

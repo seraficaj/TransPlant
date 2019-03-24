@@ -50,13 +50,13 @@
       <div>
       {{ form.rating.label }}
     </div>
-      {{ form.rating(class_="form-control") }}
+      {{ form.rating(class_="form-control", type="number", min=1, max=5) }}
     </div>
     <div>
       <div>
       {{ form.text.label }}
       </div>
-      {{ form.text(class_="form-control") }}
+      {{ form.text(class_="form-control", rows="6") }}
     </div>
 
     {{ form.submit(class_="reviewButtons") }}
@@ -78,47 +78,49 @@
 
   
 {% for reviews in stream %}
-  
-      <div class="card reviewBackground">
-        <div class="card-body reviewBackground">
-              <span class="mySpan">
-                  <form method="POST" action="" novalidate>
-                      {{ form2.hidden_tag() }}
-                  
-                      <div>
-                        {{ form2.plant.label }}
-                        <input class="form-control" id="plant" name="plant" type="text" value="{{reviews.plant}}">
-                      </div>
-                      <div>
-                        {{ form.rating.label }}
-                        <input class="form-control rating" id="rating" name="rating" type="text" value="{{reviews.rating}}">
-                      </div>
-                      <div>
-                        {{ form2.text.label }}
-                        <input class="form-control" id="text" name="text" type="text" value="{{reviews.text}}">
-                      </div>
-                      <div>
-                          <input class="form-control" hidden="hidden"  id="idNumber" name="idNumber" type="text" value="{{reviews.id}}">
-                      </div>
-                      {{ form2.submit2(class_="reviewButtons") }}
-
+    <div class="container d-flex justify-content-center">
+        <div class="card reviewCard d-flex align-items-center justify-content-center">
+          <div class="card-body reviewBackground">
+            <span class="mySpan">
+                <form method="POST" action="" novalidate>
+                    {{ form2.hidden_tag() }}
+                
+                    <div>
+                      {{ form2.plant.label }}
+                      <input class="form-control" id="plant" name="plant" type="text" value="{{reviews.plant}}">
+                    </div>
+                    <div>
+                    {{ form.rating.label }}
+                    <input class="form-control rating" id="rating" name="rating" type="text" value="{{reviews.rating}}">
+                    </div>
+                    <div>
+                      {{ form2.text.label }}
+                      <input class="form-control" id="text" name="text" type="text" value="{{reviews.text}}">
+                    </div>
+                    <div>
+                        <input class="form-control" hidden="hidden"  id="idNumber" name="idNumber" type="text" value="{{reviews.id}}">
+                    </div>
+                    {{ form2.submit2(class_="reviewButtons") }}
                     </form>
-              </span>
-          <p class="card-text">Species: {{ reviews.plant }}</p>
-          <p class="card-text ratingStar">Rating: {{ reviews.rating }}</p>
-          <p class="card-text">Review: {{ reviews.text }}</p>
-
-          <button class='editButton reviewButtons ' >Edit</button>
-          <a class= "reviewButtons"  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
-    
-        </div>
-      </div>
-   
+                </span>
+                    <p class="card-text">Species: {{ reviews.plant }}</p>
+                    <p class="card-text ratingStar">Rating: {{ reviews.rating }}</p>
+                    <p class="card-text">Review: {{ reviews.text }}</p>
+          
+                    <button class='editButton reviewButtons ' >Edit</button>
+                    <a class= "reviewButtons"  href="{{url_for('delete', idNumber = reviews.id)}}" title="delete">Delete</a>
+              
+                  </div>
+          </div>
+    </div>   
 {% endfor %}
 <h2>Saved Plants</h2>
 <div class = "savedPlants">
 {% for userPlants in stream2 %}
-    <p  class="card-text ">{{ userPlants.userPlants }}</p>
+    <ul>
+      <li>{{ userPlants.userPlants }}</li>
+    </ul>  
+  <p class="card-text ">{{ userPlants.userPlants }}</p>
 {% endfor %}
 </div>
 
