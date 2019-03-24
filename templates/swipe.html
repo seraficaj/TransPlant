@@ -3,10 +3,11 @@
 
 {% block content %}
 <h1 class="text-center">Swipe Page</h1>
-<div class="card">
-    <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
-    <div class="card-body">
-        <div>
+<div class="container">
+    <div class="card">
+        <img class="plantImage" src="{{url_for('static', filename='lizard.jpg')}}" />
+        <div class="card-body">
+            <!-- <div>
             <span class="species">Species</span>
         </div>
 
@@ -20,28 +21,32 @@
 
         <div>
             <span class="light">Light</span>
-        </div>
+        </div> -->
 
-        <div class="swipedThru" style="display:none">You swiped through all the cards!</div>
-        <div class="btn-group">
-            <button class="btn btn-success yesButton">YEUUUHHH</button>
-            <button class="btn btn-danger noButton">NOIIII</button>
+            <!-- !! Unordered list -->
+            <ul class="list-group list-group-flush">
+                <li class="list-group-item species">Species</li>
+                <li class="list-group-item difficulty">Difficulty</li>
+                <li class="list-group-item water">Water</li>
+                <li class="list-group-item light">light</li>
+            </ul>
+            <!-- !!!ends here -->
+            <div class="swipedThru" style="display:none">You swiped through all the cards!</div>
+            <div class="btn-group">
+                <button class="btn btn-success yesButton">YEUUUHHH</button>
+                <button class="btn btn-danger noButton">NOIIII</button>
+            </div>
         </div>
     </div>
-</div>
 
-
-<div>
-    <h1>Your Bebez</h1>
+    <h1 class="text-center">Your Bebez</h1>
     <ul class="yasPlants">
     </ul>
-
 </div>
-
-<form method="POST" action="">
+<form method="POST" action="" class="form-group">
     {{ form3.hidden_tag() }}
     <input hidden="hidden" id="userPlants" name="userPlants" type="text" value="">
-    <button id="submit" type="submit">Save ya Plantz</button>
+    <button class="text-center" id="submit" type="submit">Save ya Plantz</button>
 </form>
 
 
