@@ -53,16 +53,12 @@ def swipePage(swipe=None):
     return render_template('swipe.html', swipe=swipe, form3=form3)
 
 
-@app.route('/stream', methods=['GET', 'POST'])
+@app.route('/profile', methods=['GET', 'POST'])
 def stream(username=None):
     form = ReviewForm()
     form2 = EditReviewForm()
     form4 = EditProfileForm()     
 
-
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
-    # print(form2.plant.data)
-    print("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!")
     formData = form2.idNumber.data
 
     user = models.User.select().where(models.User.username == current_user.username).get()
