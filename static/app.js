@@ -1,4 +1,4 @@
-$(document).ready(function () {
+$(document).ready(() => {
     let weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
     let city = $('.city').val();
 
