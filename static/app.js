@@ -1,38 +1,45 @@
 $(document).ready(function () {
+    let weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
+    let city = $('.city').val();
 
-    var weatherUrl = "http://api.openweathermap.org/data/2.5/weather?q=";
-    var key = 'f6ba5549f3c639dd270d86edb6493470';
+    $.ajax({
+        url: `${weatherUrl} ${city} &units=imperial&appid=02e84210a52ed716535f02989864d080`,
+        method: 'GET',
+        success: response => $('.temp').html(`The weather in ${city} is ${response.main.temp} degrees.`)
+    });
 
-
-        var city =  $('.city').val();
-    
-        $.ajax({
-            url: weatherUrl + city + '&units=imperial&appid=02e84210a52ed716535f02989864d080',
-            method: 'GET',
-            success: function (response) {
-                console.log(response.main.temp);
-                $('.temp').html('The weather in ' + city + ' is ' + response.main.temp + ' degrees.');
-
-            }
-        });
-  
     $.getJSON(("static/plant.json"), function (json) {
         function setHtml(z) {
             let starIcon = `<i class="fas fa-star"></i>`
 
-            $(".species").html('Species: ' + json[z].species)
+            $(".species").html(`Species: ${json[z].species}`)
             $(".difficulty").html(`Level of Difficulty: ${starIcon.repeat(json[z].Difficulty)}`);
 
             $(".water").html(`Level of Watering: ${starIcon.repeat(json[z].watering)}`)
             $('.plantImage').attr('src', json[z].image)
-            $(".previousImage").attr("src", json[z].image).animate({"margin-right": '400px' ,width: '400px', opacity: '1'},"slow")
-            $('.light').html('Amount of Light: ' + starIcon.repeat(json[z].light))
+
+            $(".previousImage").attr("src", json[z].image).animate({
+                "margin-right": '400px',
+                width: '400px',
+                opacity: '1'
+            }, "slow")
+            $('.light').html(`Amount of Light: ${starIcon.repeat(json[z].light)}`)
         }
 
-        function animateImage(){
-            $(".plantImage").animate({ opacity: '0'},"fast");
-            $(".plantImage").hide().attr("src", json[i].image).animate({"margin-left": '500px' ,width: '400px', opacity: '0'},"fast");
-            $(".plantImage").animate({"margin-left": '0px', width: '400px', opacity: '1'}, "slow");
+        function animateImage() {
+            $(".plantImage").animate({
+                opacity: '0'
+            }, "fast");
+            $(".plantImage").hide().attr("src", json[i].image).animate({
+                "margin-left": '500px',
+                width: '400px',
+                opacity: '0'
+            }, "fast");
+            $(".plantImage").animate({
+                "margin-left": '0px',
+                width: '400px',
+                opacity: '1'
+            }, "slow");
         }
 
         let userPlantArray = []
@@ -42,14 +49,11 @@ $(document).ready(function () {
         //navigate thru cards
         $('.yesButton').click(() => {
             if (i < json.length) {
-               //add plant to saved bbz list
+                //add plant to saved bbz list
                 $('.yasPlants').append(`<li>${json[i].species}`);
                 userPlantArray.push(json[i].species)
                 $('#userPlants').val(userPlantArray)
-
-               animateImage()
-
-
+                animateImage()
                 //go onto next card
                 i++;
                 setHtml(i);
@@ -77,34 +81,29 @@ $(document).ready(function () {
         })
 
         $('.editProfileSpan').hide()
-        $('.editProfileButton').click(function (e) {
+        $('.editProfileButton').click(e => {
             $('.editProfileSpan').show()
             $('.editProfileButton').hide()
 
         })
     });
 
-    // !! slider stuff
-    $(document).ready(function () {
-        $('#slides').superslides({
-            animation: 'fade',
-            play: 5000,
-            pagination: false
-        });
-    })
-
+    $('#slides').superslides({
+        animation: 'fade',
+        play: 5000,
+        pagination: false
+    });
 
     //smooth scrolling
-    $('a[href*="#tutorial"]').on('click', function(e) {
+    $('a[href*="#tutorial"]').on('click', function (e) {
         e.preventDefault()
-      
-        $('html, body').animate(
-          {
-            scrollTop: $($(this).attr('href')).offset().top,
-          },
-          500,
-          'linear'
-        )
-      })
 
-}) //end of document.ready
+        $('html, body').animate({
+                scrollTop: $($(this).attr('href')).offset().top,
+            },
+            500,
+            'linear'
+        )
+    })
+
+})
