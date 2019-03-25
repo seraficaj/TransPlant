@@ -92,4 +92,19 @@ $(document).ready(function () {
             pagination: false
         });
     })
+
+
+    //smooth scrolling
+    $('a[href*="#tutorial"]').on('click', function(e) {
+        e.preventDefault()
+      
+        $('html, body').animate(
+          {
+            scrollTop: $($(this).attr('href')).offset().top,
+          },
+          500,
+          'linear'
+        )
+      })
+
 }) //end of document.ready

@@ -238,3 +238,8 @@ form button {
 .plantImageDiv{
     height:400px;
 }
+
+#tutorialSwipe {
+    width: 400px;
+    margin: auto;
+}
