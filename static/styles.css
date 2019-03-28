@@ -234,11 +234,21 @@ form button {
     width: 400px;
 }
 
-.plantImageDiv {
-    height: 400px;
+/* !card  */
+div.card {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    margin: 0 auto;
+    border: 1px solid black;
+    width: 350px;
 }
 
-#tutorialSwipe {
+.container {
     width: 400px;
-    margin: auto;
 }
+.card img {
+    width: 350px;
+    height: 326px;
+}
+
