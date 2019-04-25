@@ -5,11 +5,10 @@
 Our app is a house-plant matching app. Users are presented with a series of cards containing names and images of popular house plant species. There is also care information such as the amount of light and water needed to keep the plant healthy. The user can either press a button to accept or reject the plant. Accepted plants are saved to the user's profile. On a user's profile page, all the plants that have been saved are listed to the user, who can then leave reviews on their plant-caring experience.
 
 FLASK, SQLite DB, and PeeWee ORM
-## HELLOOOOOOO
 ## Wireframes and User Stories:
 
 ### User Stories: 
-
+- HELLLOOOO
 - Users can navigate through a small selection of easy-to-care plants
 
 - Users can press a button to either show approval or to reject a plant
