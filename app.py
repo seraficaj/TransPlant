@@ -180,20 +180,22 @@ def logout():
     flash("Logged Out")
     return redirect(url_for('loginPage'))
 
-
+if 'ON_HEROKU' in os.environ:
+    print('hitting ')
+    models.initialize()
 
 if __name__ == '__main__':
     models.initialize()
-    # try:
-    #     models.User.create_user(
-    #         username='rroy',
-    #         email="rhea@rhea.com",
-    #         password='password',
-    #         city= 'San Jose',
-    #         admin=True
-    #     )
-    # except ValueError:
-    #     pass
+    try:
+        models.User.create_user(
+            username='rroy',
+            email="rhea@rhea.com",
+            password='password',
+            city= 'San Jose',
+            admin=True
+        )
+    except ValueError:
+        pass
 
 
     app.run(debug=DEBUG, port=PORT)
