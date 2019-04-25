@@ -28,15 +28,19 @@ login_manager.login_view = 'login'
 @app.before_request
 def before_request():
     g.db = models.DATABASE
-    g.db.get_conn()
+    g.db.connect()
     g.user = current_user
 
 
-@app.after_request
-def after_request(response):
-    g.db.close()
-    return response
+# @app.after_request
+# def after_request(response):
+#     g.db.close()
+#     return response
 
+@app.teardown_request
+def _db_close(exc):
+    if not g.db.is_closed():
+        g.db.close()
 
 @app.route('/')
 def landingPage():
