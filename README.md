@@ -8,7 +8,6 @@ FLASK, SQLite DB, and PeeWee ORM
 ## Wireframes and User Stories:
 
 ### User Stories: 
-- HELLLOOOO
 - Users can navigate through a small selection of easy-to-care plants
 
 - Users can press a button to either show approval or to reject a plant
