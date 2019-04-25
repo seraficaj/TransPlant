@@ -1,3 +1,6 @@
+import os
+
+from playhouse.db_url import connect
 
 #import datetime for review posts
 import datetime
@@ -11,7 +14,9 @@ from flask_bcrypt import generate_password_hash
 from peewee import * 
 
 #set Database 
-DATABASE = SqliteDatabase('PlantSwipe.db')
+# DATABASE = SqliteDatabase('PlantSwipe.db')
+# DATABASE = PostgresqlDatabase('transplant')
+DATABASE = connect(os.environ.get('DATABASE_URL'))
 
 class User(UserMixin, Model):
     username = CharField(unique=True)
