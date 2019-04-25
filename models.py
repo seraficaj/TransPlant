@@ -88,7 +88,7 @@ class userPlants(Model):
     
 
 def initialize():
-    DATABASE.connect()
+    DATABASE.get_conn()
     DATABASE.create_tables([User, Review, Plant, userPlants], safe=True)
     DATABASE.close()
 
