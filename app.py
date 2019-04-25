@@ -13,12 +13,13 @@ from forms import ReviewForm, SignUpForm, LoginForm, PlantForm, EditReviewForm,E
 
 
 app = Flask(__name__, static_url_path='/static')
+app.secret_key = 'aaaaa'
+
 CORS(app)
 
 DEBUG = True
 PORT = 8000
 
-app.secret_key = 'adkjfalj.adflja.dfnasdf.asd'
 
 login_manager = LoginManager()
 login_manager.init_app(app)
