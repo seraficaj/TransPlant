@@ -44,6 +44,6 @@ FLASK, SQLite DB, and PeeWee ORM
 
 Rhea Roy - https://github.com/rhear0yishere
 
-Jason Serafica - http://github.com/teknoformula
+Jason Serafica - http://github.com/seraficaj
 
 Karma Drupka - https://github.com/coderkarma 
